@@ -1,0 +1,30 @@
+plugins {
+    id 'application'
+    id 'eclipse'
+    id 'idea'
+    id 'jacoco'
+    id 'java'
+    id 'checkstyle'
+    id 'pmd'
+    id 'findbugs'
+}
+
+repositories {
+    // Use jcenter for resolving your dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+}
+
+dependencies {
+    // This dependency is found on compile classpath of this component and consumers.
+    implementation 'com.google.guava:guava:27.0.1-jre'
+
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+}
+
+mainClassName = 'seaWar2.GameImpl'
+
+run {
+   standardInput = System.in
+}
