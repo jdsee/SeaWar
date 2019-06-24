@@ -3,6 +3,7 @@ package seaWar2.communication;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.InetAddress;
 
 /**
  * This interface creates sockets for TCP connection.
@@ -14,6 +15,10 @@ public interface TCPChannel extends Runnable {
 
     static TCPChannel createTCPChannel(int port, boolean asServer, String name) {
         return new TCPChannelImpl(port, asServer, name);
+    }
+
+    static TCPChannel createTCPChannel(InetAddress ipAddr, int port, boolean asServer, String name) {
+        return new TCPChannelImpl(ipAddr, port, asServer, name);
     }
 
     void close() throws IOException;

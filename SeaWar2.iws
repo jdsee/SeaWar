@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1b5542f-216d-49bc-974c-6f912ffd47ad" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannelImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannelImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardCommandsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardCommandsImpl.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -83,8 +85,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/view/BoardCommandsImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="464" column="57" selection-start-line="464" selection-start-column="57" selection-end-line="464" selection-end-column="57" />
+            <state relative-caret-position="287">
+              <caret line="426" column="61" selection-start-line="426" selection-start-column="61" selection-end-line="426" selection-end-column="61" />
               <folding>
                 <element signature="e#1281#1282#0" expanded="true" />
                 <element signature="method#runConnectionMode#0;class#BoardCommandsImpl#0" />
@@ -120,8 +122,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
+            <state relative-caret-position="195">
+              <caret line="16" column="24" lean-forward="true" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -129,10 +131,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannelImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-45">
-              <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+            <state relative-caret-position="245">
+              <caret line="26" column="41" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#654#655#0" expanded="true" />
+                <element signature="e#673#674#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -229,8 +233,6 @@
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/board/RemoteBoardImpl.java" />
         <option value="$PROJECT_DIR$/src/test/java/SeaWar2/TCPChannelImplTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/board/LocalBoardImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannelImpl.java" />
         <option value="$PROJECT_DIR$/src/test/java/SeaWar2/BoardCommandsImplTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/communication/SWPEngine.java" />
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/communication/SWPEngineImpl.java" />
@@ -240,6 +242,8 @@
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/Game.java" />
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsoleImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsole.java" />
+        <option value="$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannelImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardCommandsImpl.java" />
       </list>
     </option>
@@ -544,7 +548,7 @@
       <workItem from="1561194748715" duration="7748000" />
       <workItem from="1561362420493" duration="2451000" />
       <workItem from="1561368732567" duration="1373000" />
-      <workItem from="1561413447356" duration="3256000" />
+      <workItem from="1561413447356" duration="4016000" />
     </task>
     <servers />
   </component>
@@ -581,7 +585,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34580000" />
+    <option name="totallyTimeSpent" value="35340000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -925,23 +929,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannelImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-45">
-          <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/communication/SWPEngineImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -1016,10 +1003,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="16" column="24" lean-forward="true" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannelImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="26" column="41" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#654#655#0" expanded="true" />
+            <element signature="e#673#674#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/view/BoardCommandsImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="464" column="57" selection-start-line="464" selection-start-column="57" selection-end-line="464" selection-end-column="57" />
+        <state relative-caret-position="287">
+          <caret line="426" column="61" selection-start-line="426" selection-start-column="61" selection-end-line="426" selection-end-column="61" />
           <folding>
             <element signature="e#1281#1282#0" expanded="true" />
             <element signature="method#runConnectionMode#0;class#BoardCommandsImpl#0" />

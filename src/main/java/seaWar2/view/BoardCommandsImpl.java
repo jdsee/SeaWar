@@ -411,9 +411,11 @@ public class BoardCommandsImpl implements BoardCommands {
                             "[1] Open new game\n" +
                             "[2] Join existing game");
             this.printPrompt();
-            String channelName;
-            boolean asServer;
+            InetAddress hostAddr;
             int port = 8080;
+            boolean asServer;
+            String channelName;
+            TCPChannel tcpChannel;
             String cmd = consoleInput.readLine().trim();
             switch (cmd) {
                 case OPEN_CMD_NR:
@@ -422,6 +424,7 @@ public class BoardCommandsImpl implements BoardCommands {
                     asServer = true;
                     consoleOutput.println("\nInvite someone to play!" +
                             "\nYour IP-Address: " + this.getPublicLocalHost());
+                    tcpChannel = TCPChannel.createTCPChannel(port, asServer, channelName);
                     break;
                 case JOIN_CMD_NR:
                 case JOIN_CMD:
@@ -429,13 +432,13 @@ public class BoardCommandsImpl implements BoardCommands {
                     asServer = false;
                     consoleOutput.print("Please specify the ip address of your opponent: ");
                     String hostName = consoleInput.readLine();
-                    InetAddress hostAddr = InetAddress.getByName(hostName);
+                    hostAddr = InetAddress.getByName(hostName);
+                    tcpChannel = TCPChannel.createTCPChannel(hostAddr, port, asServer, channelName);
                     break;
                 default:
                     throw new IllegalArgumentException();
             }
 
-            TCPChannel tcpChannel = TCPChannel.createTCPChannel(port, asServer, channelName);
             this.game.setTCPChannel(tcpChannel);
             new Thread(tcpChannel).start();
             tcpChannel.waitForConnection();
@@ -450,7 +453,7 @@ public class BoardCommandsImpl implements BoardCommands {
         }
     }
 
-    private String getPublicLocalHost() throws IOException{
+    private String getPublicLocalHost() throws IOException {
         /*while (true) {
             try (final DatagramSocket socket = new DatagramSocket()) {
                 socket.connect(InetAddress.getByName("8.8.8.8"), 8080);
@@ -459,8 +462,7 @@ public class BoardCommandsImpl implements BoardCommands {
                 e.printStackTrace();
             }
         }*/
-        try {
-            Socket socket = new Socket();
+        try (final Socket socket = new Socket()) {
             socket.connect(new InetSocketAddress("google.com", 80));
             return socket.getLocalAddress().getHostAddress();
         } catch (IOException e) {

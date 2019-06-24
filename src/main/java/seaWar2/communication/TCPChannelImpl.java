@@ -3,6 +3,7 @@ package seaWar2.communication;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -14,6 +15,7 @@ public class TCPChannelImpl implements TCPChannel {
     private final int port;
     private final boolean asServer;
     private final String name;
+    private final InetAddress ipAddr;
     private Socket socket = null;
 
     private boolean fatalError = false;
@@ -22,6 +24,11 @@ public class TCPChannelImpl implements TCPChannel {
     private final static int WAIT_LOOP_IN_MILIS = 1000;
 
     public TCPChannelImpl(int port, boolean asServer, String name) {
+        this(null, port, asServer, name);
+    }
+
+    public TCPChannelImpl(InetAddress ipAddr, int port, boolean asServer, String name) {
+        this.ipAddr = ipAddr;
         this.port = port;
         this.asServer = asServer;
         this.name = name;
@@ -145,7 +152,7 @@ public class TCPChannelImpl implements TCPChannel {
                     System.out.println(b.toString());
                     //>>>>>>>>>>>>>>>>>>>>>>> debug
 
-                    Socket socket = new Socket("localhost", port);
+                    Socket socket = new Socket(ipAddr, port);
 
                     b = new StringBuilder();
                     b.append("TCPChannel (");
