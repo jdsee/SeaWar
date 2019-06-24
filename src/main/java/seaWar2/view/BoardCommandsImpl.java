@@ -9,10 +9,7 @@ import seaWar2.communication.SWPEngine;
 import seaWar2.communication.TCPChannel;
 
 import java.io.*;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
+import java.net.*;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
@@ -453,14 +450,22 @@ public class BoardCommandsImpl implements BoardCommands {
         }
     }
 
-    private String getPublicLocalHost() {
-        while (true) {
+    private String getPublicLocalHost() throws IOException{
+        /*while (true) {
             try (final DatagramSocket socket = new DatagramSocket()) {
                 socket.connect(InetAddress.getByName("8.8.8.8"), 8080);
                 return socket.getLocalAddress().getHostAddress();
             } catch (SocketException | UnknownHostException e) {
                 e.printStackTrace();
             }
+        }*/
+        try {
+            Socket socket = new Socket();
+            socket.connect(new InetSocketAddress("google.com", 80));
+            return socket.getLocalAddress().getHostAddress();
+        } catch (IOException e) {
+            e.printStackTrace();
+            throw new IOException();
         }
     }
 
