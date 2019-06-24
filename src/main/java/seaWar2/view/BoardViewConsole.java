@@ -11,8 +11,13 @@ import java.io.PrintStream;
  * @author joschaseelig
  */
 public interface BoardViewConsole {
+    char WATER_SYMBOL = '·';
+    char SHIP_SYMBOL = '»';
+    char SHOT_ON_WATER_SYMBOL = '∷';
+    char HIT_SYMBOL = '✖';
+    char UNKNOWN_SYMBOL = '?';
 
-    static BoardViewConsole createBoardViewConsole(Game game, OutputStream out ) {
+    static BoardViewConsole createBoardViewConsole(Game game, OutputStream out) {
         return new BoardViewConsoleImpl(game, out);
     }
 

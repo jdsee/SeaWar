@@ -3,6 +3,7 @@ package seaWar2;
 import seaWar2.board.LocalBoard;
 import seaWar2.board.RemoteBoard;
 import seaWar2.communication.SWPEngine;
+import seaWar2.communication.TCPChannel;
 import seaWar2.view.BoardCommands;
 import seaWar2.view.BoardViewConsole;
 
@@ -40,4 +41,8 @@ public interface Game {
     void setStatus(GameStatus status);
 
     GameStatus getStatus();
+
+    void setTCPChannel(TCPChannel tcpChannel);
+
+    TCPChannel getTCPChannel();
 }

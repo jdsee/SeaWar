@@ -2,6 +2,7 @@ package seaWar2;
 
 import seaWar2.board.*;
 import seaWar2.communication.SWPEngine;
+import seaWar2.communication.TCPChannel;
 import seaWar2.view.BoardCommands;
 import seaWar2.view.BoardViewConsole;
 
@@ -19,6 +20,7 @@ public class GameImpl implements Game {
     private final LocalBoard localBoard;
     private final RemoteBoard remoteBoard;
     private final SWPEngine swpEngine;
+    private TCPChannel channel;
     private GameStatus status;
 
     GameImpl() {
@@ -40,7 +42,7 @@ public class GameImpl implements Game {
 
     @Override
     public void startGame() {
-        /*try {
+        try {
             localBoard.setShip(localBoard.getUnsetShip(5), 0, 0, true);
             localBoard.setShip(localBoard.getUnsetShip(4), 2, 0, true);
             localBoard.setShip(localBoard.getUnsetShip(4), 2, 9, false);
@@ -59,9 +61,9 @@ public class GameImpl implements Game {
             e.printStackTrace();
         } catch (ShipNotAvailableException e) {
             e.printStackTrace();
-        }*/
-
+        }
         view.printBoards(localBoard, remoteBoard);
+
         this.boardCommands.runGame();
     }
 
@@ -98,5 +100,15 @@ public class GameImpl implements Game {
     @Override
     public void setStatus(GameStatus status) {
         this.status = status;
+    }
+
+    @Override
+    public TCPChannel getTCPChannel() {
+        return this.channel;
+    }
+
+    @Override
+    public void setTCPChannel(TCPChannel channel) {
+        this.channel = channel;
     }
 }

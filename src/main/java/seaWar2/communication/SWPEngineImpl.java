@@ -34,14 +34,17 @@ public class SWPEngineImpl implements SWPEngine {
                     case SHOT_CMD:
                         this.handleShotCmd();
                         break;
-                    /*case RESULT_CMD:
+                    case RESULT_CMD:
                         this.handleResultCmd();
-                        break;*/
+                        break;
                     case READY_CMD:
                         this.handleReadyCmd();
                         break;
                     case START_CMD:
                         this.handleStartCmd();
+                        break;
+                    case TALK_CMD:
+                        this.handleTalkCmd();
                         break;
                     case CLOSE_CONNECTION_CMD:
                         this.handleCloseConnectionCmd();
@@ -132,7 +135,6 @@ public class SWPEngineImpl implements SWPEngine {
         this.dos.writeUTF(SHOT_CMD);
         this.dos.writeInt(row);
         this.dos.writeInt(column);
-        this.handleResultCmd();
     }
 
     @Override
@@ -166,7 +168,7 @@ public class SWPEngineImpl implements SWPEngine {
     }
 
     private void sendResultCmd(int row, int column, ShotResult res) throws IOException {
-        //this.dos.writeUTF(RESULT_CMD);
+        this.dos.writeUTF(RESULT_CMD);
         this.dos.writeInt(row);
         this.dos.writeInt(column);
         int resInt = parseShotResultToInt(res);
@@ -178,8 +180,8 @@ public class SWPEngineImpl implements SWPEngine {
         int column = this.dis.readInt();
 
         int resInt = this.dis.readInt();
-
         ShotResult res = this.parseIntToShotResult(resInt);
+
         switch (res) {
             case WATER:
                 this.remoteBoard.setFieldStatus(row, column, FieldStatus.SHOT_ON_WATER);
@@ -208,37 +210,6 @@ public class SWPEngineImpl implements SWPEngine {
             throw new StatusException();
         }
     }
-
-    /*@Override
-    public void sendReadyCmd() throws IOException, StatusException {
-        this.checkStatus(GameStatus.READY);
-        if (!this.determinesStart) {
-            this.dos.writeUTF(READY_CMD);
-        } else {
-            System.out.println("\nWait until your opponent is ready");
-            while (this.game.getStatus() == GameStatus.READY) {
-                try {
-                    System.out.print(".");
-                    Thread.sleep(500);
-                } catch (InterruptedException e) {
-                    //
-                }
-            }
-        }
-    }*/
-
-    /*private void handleReadyCmd() throws IOException {
-        while (this.game.getStatus() == GameStatus.PREPARING) {
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                //
-            }
-        }
-        boolean callerStarts = new Random().nextBoolean();
-        this.game.setStatus(callerStarts ? GameStatus.ACTIVE : GameStatus.PASSIVE);
-        this.sendStartCmd(callerStarts);
-    }*/
 
     @Override
     public void sendReadyCmd() throws IOException, StatusException {
@@ -287,5 +258,15 @@ public class SWPEngineImpl implements SWPEngine {
     @Override
     public boolean isConnected() {
         return this.dis != null || this.dos != null;
+    }
+
+    @Override
+    public synchronized void sendMessage(String message) throws IOException {
+        this.dos.writeUTF(TALK_CMD);
+        this.dos.writeUTF(message);
+    }
+
+    private void handleTalkCmd() throws IOException {
+        view.printMessage("\nYour opponent: "+this.dis.readUTF()+"\n");
     }
 }

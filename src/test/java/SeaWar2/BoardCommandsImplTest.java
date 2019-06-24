@@ -193,7 +193,7 @@ public class BoardCommandsImplTest {
                 dos.writeUTF("wait\n");
                 dos.writeUTF("shoot a 3\n");
                 dos.writeUTF("wait\n");
-                dos.writeUTF("shoot b 2 1\n");
+                dos.writeUTF("shoot b 2\n");
 
                 ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
                 DataInputStream commandStream = new DataInputStream(bais);
@@ -228,8 +228,12 @@ public class BoardCommandsImplTest {
             dos.writeUTF("wait\n");
             dos.writeUTF("status\n");
             dos.writeUTF("shoot a 1\n");
-            dos.writeUTF("print\n");
             dos.writeUTF("wait\n");
+            dos.writeUTF("shoot a 2\n");
+            dos.writeUTF("wait\n");
+            dos.writeUTF("shoot a 3\n");
+            dos.writeUTF("wait\n");
+            dos.writeUTF("shoot b 2\n");
 
             ByteArrayInputStream baisB = new ByteArrayInputStream(baosB.toByteArray());
             DataInputStream commandStreamB = new DataInputStream(baisB);

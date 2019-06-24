@@ -15,6 +15,7 @@ public interface SWPEngine extends Runnable {
     String START_CMD = "start";
     String READY_CMD = "ready";
     String CLOSE_CONNECTION_CMD = "close";
+    String TALK_CMD = "talk";
 
 
     String WATER_STRING = "water";
@@ -37,4 +38,6 @@ public interface SWPEngine extends Runnable {
     void sendReadyCmd() throws IOException, StatusException;
 
     boolean isConnected();
+
+    void sendMessage(String message) throws IOException;
 }

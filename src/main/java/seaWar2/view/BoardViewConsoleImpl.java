@@ -10,12 +10,6 @@ import java.io.PrintStream;
  * @author joschaseelig
  */
 public class BoardViewConsoleImpl implements BoardViewConsole {
-    private static final char WATER_SYMBOL = '·';
-    private static final char SHIP_SYMBOL = '»';
-    private static final char SHOT_ON_WATER_SYMBOL = '○';
-    private static final char HIT_SYMBOL = '✖';
-    private static final char UNKNOWN_SYMBOL = '⁃';
-
     Game game;
     PrintStream screen;
 

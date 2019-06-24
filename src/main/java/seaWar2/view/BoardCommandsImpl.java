@@ -9,6 +9,10 @@ import seaWar2.communication.SWPEngine;
 import seaWar2.communication.TCPChannel;
 
 import java.io.*;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
@@ -21,13 +25,12 @@ public class BoardCommandsImpl implements BoardCommands {
     private final RemoteBoard remoteBoard;
     private final LocalBoard localBoard;
     private final SWPEngine swpEngine;
-    private boolean determinesStart;
 
-    public BoardCommandsImpl(Game game) {
+    BoardCommandsImpl(Game game) {
         this(game, System.in, System.out);
     }
 
-    public BoardCommandsImpl(Game game, InputStream in, OutputStream out) {
+    BoardCommandsImpl(Game game, InputStream in, OutputStream out) {
         this.game = game;
 
         this.consoleOutput = new PrintStream(out);
@@ -41,23 +44,26 @@ public class BoardCommandsImpl implements BoardCommands {
         this.swpEngine = game.getSWPEngine();
     }
 
-    /*public void runGameX(){
-        this.printTasks();
-        boolean repeat = true;
-        while (repeat) {
-            runConnectionMode();
-            runPreparationMode();
-            runPlayingMode();
-        }
-    }*/
+    private void printPrompt() {
+        consoleOutput.print("\n-> ");
+    }
 
     @Override
     public void runGame() {
+        while (!this.swpEngine.isConnected()) {
+            try {
+                doConnect();
+            } catch (IOException ioe) {
+                consoleOutput.println("* Cannot read from console: " + ioe.getMessage() + " *");
+            } catch (IllegalArgumentException iae) {
+                consoleOutput.println(ErrorMessages.ILLEGAL_ARGUMENT_ERR);
+            }
+        }
         this.printTasks();
         boolean repeat = true;
         while (repeat) {
             try {
-                consoleOutput.print("\n-> ");
+                this.printPrompt();
                 String cmdLineString = consoleInput.readLine();
 
                 if (cmdLineString == null) break;
@@ -121,6 +127,7 @@ public class BoardCommandsImpl implements BoardCommands {
                     case "q!":
                     case EXIT:
                         this.swpEngine.sendCloseConnectionCmd();
+                        this.game.getTCPChannel().close();
                         System.exit(0);
                         break;
                     default:
@@ -135,9 +142,9 @@ public class BoardCommandsImpl implements BoardCommands {
             } catch (ShipNotAvailableException sna) {
                 consoleOutput.println("* There is no ship left with the specified length! *");
             } catch (BoardException be) {
-                System.out.println("* Failure on board operation: " + be.getMessage() + " *");
+                consoleOutput.println("* Failure on board operation: " + be.getMessage() + " *");
             } catch (StatusException se) {
-                System.out.println("* Status Error: " + se.getMessage() + " *");
+                consoleOutput.println("* Status Error: " + se.getMessage() + " *");
             } catch (NoSuchElementException | NumberFormatException nse) {
                 consoleOutput.println("* Parameters are missing or the syntax is wrong! *");
             } catch (IOException e) {
@@ -384,8 +391,8 @@ public class BoardCommandsImpl implements BoardCommands {
         //swpEngine.writeGiveUpPDU();
     }
 
-    private void doTalk(String paramString) {
-
+    private void doTalk(String message) throws IOException {
+        this.swpEngine.sendMessage(message);
     }
 
     private void doGetStatus() {
@@ -400,29 +407,60 @@ public class BoardCommandsImpl implements BoardCommands {
 
     }
 
-    private void doConnect() throws IOException {
+    private void doConnect() throws IOException, IllegalArgumentException {
         try {
-            consoleOutput.println("Specify the channel name: ");
-            String channelName = consoleInput.readLine().trim();
-            consoleOutput.println("As server: ");
-            boolean asServer = consoleInput.readLine().matches(".*y.*");
-            consoleOutput.println("Specify the port: ");
-            String portString = consoleInput.readLine().trim();
-            int port = Integer.parseInt(portString);
+            consoleOutput.println(
+                    "\nConnect to another player:\n" +
+                            "[1] Open new game\n" +
+                            "[2] Join existing game");
+            this.printPrompt();
+            String channelName;
+            boolean asServer;
+            int port = 8080;
+            String cmd = consoleInput.readLine().trim();
+            switch (cmd) {
+                case OPEN_CMD_NR:
+                case OPEN_CMD:
+                    channelName = CHANNEL_NAME_SERVER;
+                    asServer = true;
+                    consoleOutput.println("\nInvite someone to play!" +
+                            "\nYour IP-Address: " + this.getPublicLocalHost());
+                    break;
+                case JOIN_CMD_NR:
+                case JOIN_CMD:
+                    channelName = CHANNEL_NAME_CLIENT;
+                    asServer = false;
+                    consoleOutput.print("Please specify the ip address of your opponent: ");
+                    String hostName = consoleInput.readLine();
+                    InetAddress hostAddr = InetAddress.getByName(hostName);
+                    break;
+                default:
+                    throw new IllegalArgumentException();
+            }
 
             TCPChannel tcpChannel = TCPChannel.createTCPChannel(port, asServer, channelName);
+            this.game.setTCPChannel(tcpChannel);
             new Thread(tcpChannel).start();
             tcpChannel.waitForConnection();
 
             DataInputStream dis = new DataInputStream(tcpChannel.getInputStream());
             DataOutputStream dos = new DataOutputStream(tcpChannel.getOutputStream());
 
-            SWPEngine swpEngine = this.game.getSWPEngine();
-            swpEngine.handleConnection(dis, dos, asServer);
-            this.determinesStart = asServer;
+            this.swpEngine.handleConnection(dis, dos, asServer);
         } catch (IOException e) {
             e.printStackTrace();
             throw new IOException();
+        }
+    }
+
+    private String getPublicLocalHost() {
+        while (true) {
+            try (final DatagramSocket socket = new DatagramSocket()) {
+                socket.connect(InetAddress.getByName("8.8.8.8"), 8080);
+                return socket.getLocalAddress().getHostAddress();
+            } catch (SocketException | UnknownHostException e) {
+                e.printStackTrace();
+            }
         }
     }
 
