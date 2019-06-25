@@ -26,7 +26,7 @@ public class BoardViewConsoleImpl implements BoardViewConsole {
         this.printSeperator('·');
         this.screen.print("\n");
         this.screen.print("            - YOU -          |");
-        this.screen.print("\n       - YOUR RIVAL -");
+        this.screen.print("       - YOUR RIVAL -");
 
         this.screen.print("\n");
         this.printSeperator('–');
