@@ -25,7 +25,8 @@ public class BoardViewConsoleImpl implements BoardViewConsole {
 
         this.printSeperator('·');
         this.screen.print("\n");
-        this.screen.print("            - YOU -          |       - YOUR RIVAL -");
+        this.screen.print("            - YOU -          |");
+        this.screen.print("\n       - YOUR RIVAL -");
 
         this.screen.print("\n");
         this.printSeperator('–');
@@ -62,7 +63,7 @@ public class BoardViewConsoleImpl implements BoardViewConsole {
                         this.screen.print(WATER_SYMBOL);
                         break;
                     case UNKOWN:
-                        this.screen.print(UNKNOWN_SYMBOL);
+                        this.screen.print(+ UNKNOWN_SYMBOL);
                         break;
                     case HIT:
                         this.screen.print(HIT_SYMBOL);
@@ -80,7 +81,7 @@ public class BoardViewConsoleImpl implements BoardViewConsole {
         this.screen.print("\n");
         this.printColumnIndices();
         this.screen.print("\n");
-        this.printSeperator( '–');
+        this.printSeperator('–');
         this.screen.print("\n");
     }
 
