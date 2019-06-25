@@ -463,7 +463,7 @@ public class BoardCommandsImpl implements BoardCommands {
             }
         }*/
         try (final Socket socket = new Socket()) {
-            socket.connect(new InetSocketAddress("google.com", 80));
+            socket.connect(new InetSocketAddress("https://github.com/jslg255", 80));
             return socket.getLocalAddress().getHostAddress();
         } catch (IOException e) {
             e.printStackTrace();
