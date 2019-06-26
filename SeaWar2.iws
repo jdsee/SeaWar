@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1b5542f-216d-49bc-974c-6f912ffd47ad" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/SeaWar2.iws" beforeDir="false" afterPath="$PROJECT_DIR$/SeaWar2.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/seaWar2/communication/TCPChannel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/seaWar2/communication/TCPChannel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/seaWar2/communication/TCPChannelImpl$TCPClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/seaWar2/communication/TCPChannelImpl$TCPClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/seaWar2/communication/TCPChannelImpl$TCPServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/seaWar2/communication/TCPChannelImpl$TCPServer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/seaWar2/communication/TCPChannelImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/seaWar2/communication/TCPChannelImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/seaWar2/view/BoardCommandsImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/seaWar2/view/BoardCommandsImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/seaWar2/view/BoardViewConsoleImpl$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/seaWar2/view/BoardViewConsoleImpl$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/seaWar2/view/BoardViewConsoleImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/seaWar2/view/BoardViewConsoleImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannelImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannelImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardCommandsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardCommandsImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsoleImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsoleImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/SeaWar2/BoardCommandsImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/SeaWar2/BoardCommandsImplTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -92,7 +80,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/view/BoardCommandsImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="421">
@@ -166,11 +154,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannelImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2190">
-              <caret line="155" column="60" selection-start-line="155" selection-start-column="60" selection-end-line="155" selection-end-column="60" />
+            <state relative-caret-position="303">
+              <caret line="154" column="20" selection-start-line="154" selection-start-column="20" selection-end-line="154" selection-end-column="20" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#654#655#0" expanded="true" />
@@ -228,10 +216,10 @@
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/Game.java" />
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannel.java" />
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsole.java" />
-        <option value="$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannelImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsoleImpl.java" />
         <option value="$PROJECT_DIR$/src/test/java/SeaWar2/BoardCommandsImplTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardCommandsImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannelImpl.java" />
       </list>
     </option>
   </component>
@@ -559,7 +547,7 @@
       <workItem from="1561413447356" duration="4189000" />
       <workItem from="1561455106952" duration="7368000" />
       <workItem from="1561492333644" duration="388000" />
-      <workItem from="1561534730434" duration="338000" />
+      <workItem from="1561534730434" duration="532000" />
     </task>
     <servers />
   </component>
@@ -596,7 +584,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43607000" />
+    <option name="totallyTimeSpent" value="43801000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -944,18 +932,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannelImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2190">
-          <caret line="155" column="60" selection-start-line="155" selection-start-column="60" selection-end-line="155" selection-end-column="60" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#654#655#0" expanded="true" />
-            <element signature="e#702#703#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsole.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -971,13 +947,6 @@
             <element signature="e#667#668#0" expanded="true" />
             <element signature="e#709#710#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsoleImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="30" column="88" selection-start-line="30" selection-start-column="88" selection-end-line="30" selection-end-column="88" />
         </state>
       </provider>
     </entry>
@@ -1023,6 +992,25 @@
             <element signature="method#runConnectionMode#0;class#BoardCommandsImpl#0" />
             <element signature="method#runPreparationMode#0;class#BoardCommandsImpl#0" />
             <element signature="method#runPlayingMode#0;class#BoardCommandsImpl#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsoleImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="30" column="88" selection-start-line="30" selection-start-column="88" selection-end-line="30" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannelImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="154" column="20" selection-start-line="154" selection-start-column="20" selection-end-line="154" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#654#655#0" expanded="true" />
+            <element signature="e#702#703#0" expanded="true" />
           </folding>
         </state>
       </provider>
