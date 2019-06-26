@@ -17,6 +17,20 @@ public interface BoardViewConsole {
     char HIT_SYMBOL = '✖';
     char UNKNOWN_SYMBOL = '?';
 
+    String ANSI_RESET = "\u001B[0m";
+
+    String ANSI_HIGH_INTENSITY = "\u001B[1m";
+    String ANSI_LOW_INTENSITY = "\u001B[2m";
+
+    String ANSI_RED = "\u001B[31m";
+    String ANSI_GREEN = "\u001B[32m";
+    String ANSI_YELLOW = "\u001B[33m";
+    String ANSI_BLUE = "\u001B[34m";
+    String ANSI_MAGENTA = "\u001B[35m";
+    String ANSI_BRIGHT_CYAN = "\u001B[96m";
+    String ANSI_CYAN = "\u001B[36m";
+    String ANSI_WHITE = "\u001B[37m";
+
     static BoardViewConsole createBoardViewConsole(Game game, OutputStream out) {
         return new BoardViewConsoleImpl(game, out);
     }

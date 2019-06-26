@@ -1,6 +1,7 @@
 package seaWar2.view;
 
 import seaWar2.Game;
+import seaWar2.GameStatus;
 import seaWar2.board.*;
 
 import java.io.OutputStream;
@@ -25,8 +26,16 @@ public class BoardViewConsoleImpl implements BoardViewConsole {
 
         this.printSeperator('·');
         this.screen.print("\n");
-        this.screen.print("            - YOU -          |");
-        this.screen.print("       - YOUR RIVAL -");
+        if (this.game.getStatus() == GameStatus.ACTIVE) {
+            this.screen.print(ANSI_BRIGHT_CYAN + ANSI_HIGH_INTENSITY + "            - YOU -          " + ANSI_RESET + "|");
+            this.screen.print(ANSI_HIGH_INTENSITY + "       - YOUR RIVAL -" + ANSI_RESET);
+        } else if (this.game.getStatus() == GameStatus.PASSIVE) {
+            this.screen.print(ANSI_HIGH_INTENSITY + "            - YOU -          " + ANSI_RESET + "|");
+            this.screen.print(ANSI_BRIGHT_CYAN + ANSI_HIGH_INTENSITY + "       - YOUR RIVAL -" + ANSI_RESET);
+        } else {
+            this.screen.print(ANSI_HIGH_INTENSITY + "            - YOU -          " + ANSI_RESET + "|");
+            this.screen.print(ANSI_HIGH_INTENSITY + "       - YOUR RIVAL -" + ANSI_RESET);
+        }
 
         this.screen.print("\n");
         this.printSeperator('–');
@@ -42,7 +51,7 @@ public class BoardViewConsoleImpl implements BoardViewConsole {
             for (int j = 0; j <= Board.MAX_COLUMN_INDEX; j++) {
                 switch (localFields[i][j].getFieldStatus()) {
                     case WATER:
-                        this.screen.print(WATER_SYMBOL);
+                        this.screen.print(ANSI_LOW_INTENSITY + WATER_SYMBOL + ANSI_RESET);
                         break;
                     case SHIP:
                         this.screen.print(SHIP_SYMBOL);
@@ -63,7 +72,7 @@ public class BoardViewConsoleImpl implements BoardViewConsole {
                         this.screen.print(WATER_SYMBOL);
                         break;
                     case UNKOWN:
-                        this.screen.print(+ UNKNOWN_SYMBOL);
+                        this.screen.print(ANSI_LOW_INTENSITY + UNKNOWN_SYMBOL + ANSI_RESET);
                         break;
                     case HIT:
                         this.screen.print(HIT_SYMBOL);

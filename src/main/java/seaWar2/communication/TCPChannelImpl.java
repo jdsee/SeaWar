@@ -152,7 +152,8 @@ public class TCPChannelImpl implements TCPChannel {
                     System.out.println(b.toString());
                     //>>>>>>>>>>>>>>>>>>>>>>> debug
 
-                    Socket socket = new Socket(ipAddr, port);
+                    //Socket socket = new Socket(ipAddr, port);
+                    Socket socket = new Socket("localhost", port);
 
                     b = new StringBuilder();
                     b.append("TCPChannel (");

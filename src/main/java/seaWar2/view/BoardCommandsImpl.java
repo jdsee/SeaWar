@@ -434,6 +434,8 @@ public class BoardCommandsImpl implements BoardCommands {
                     String hostName = consoleInput.readLine();
                     hostAddr = InetAddress.getByName(hostName);
                     tcpChannel = TCPChannel.createTCPChannel(hostAddr, port, asServer, channelName);
+                    //TODO offline exception
+                    //tcpChannel = TCPChannel.createTCPChannel(port, asServer, channelName);
                     break;
                 default:
                     throw new IllegalArgumentException();
@@ -469,6 +471,13 @@ public class BoardCommandsImpl implements BoardCommands {
             e.printStackTrace();
             throw new IOException();
         }
+    }
+
+    private void chooseUserColor(){
+        consoleOutput.println("\nChoose your color: " +
+                "[1] Magenta" +
+                "[2] Cyan");
+        //TODO
     }
 
     private void doFill() {

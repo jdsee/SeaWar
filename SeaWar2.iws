@@ -2,7 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1b5542f-216d-49bc-974c-6f912ffd47ad" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/SeaWar2.iws" beforeDir="false" afterPath="$PROJECT_DIR$/SeaWar2.iws" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/seaWar2/communication/TCPChannel.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/seaWar2/communication/TCPChannel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/seaWar2/communication/TCPChannelImpl$TCPClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/seaWar2/communication/TCPChannelImpl$TCPClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/seaWar2/communication/TCPChannelImpl$TCPServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/seaWar2/communication/TCPChannelImpl$TCPServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/seaWar2/communication/TCPChannelImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/seaWar2/communication/TCPChannelImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/seaWar2/view/BoardCommandsImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/seaWar2/view/BoardCommandsImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/seaWar2/view/BoardViewConsoleImpl$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/seaWar2/view/BoardViewConsoleImpl$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/seaWar2/view/BoardViewConsoleImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/seaWar2/view/BoardViewConsoleImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannelImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannelImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardCommandsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardCommandsImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsole.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsoleImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsoleImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/SeaWar2/BoardCommandsImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/SeaWar2/BoardCommandsImplTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -80,11 +92,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/view/BoardCommandsImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1113">
-              <caret line="465" column="64" selection-start-line="465" selection-start-column="64" selection-end-line="465" selection-end-column="64" />
+            <state relative-caret-position="421">
+              <caret line="436" column="44" selection-start-line="436" selection-start-column="44" selection-end-line="436" selection-end-column="44" />
               <folding>
                 <element signature="e#1237#1238#0" expanded="true" />
                 <element signature="e#1281#1282#0" expanded="true" />
@@ -97,10 +109,68 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsoleImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="297">
+              <caret line="30" column="88" selection-start-line="30" selection-start-column="88" selection-end-line="30" selection-end-column="88" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/SeaWar2/BoardCommandsImplTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="142">
+              <caret line="168" column="16" selection-start-line="168" selection-start-column="16" selection-end-line="168" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/SeaWar2/LocalBoardImplTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/SeaWar2/TCPChannelImplTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-157">
+              <caret line="18" selection-start-line="18" selection-end-line="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/SeaWar2/BoardViewConsoleImplTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="37" column="1" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
+              <folding>
+                <element signature="e#267#268#0" expanded="true" />
+                <element signature="e#312#313#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/board/FieldImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" selection-start-line="9" selection-end-line="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannelImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="26" column="41" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
+            <state relative-caret-position="2190">
+              <caret line="155" column="60" selection-start-line="155" selection-start-column="60" selection-end-line="155" selection-end-column="60" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#654#655#0" expanded="true" />
@@ -111,81 +181,23 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/GameImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1200">
-              <caret line="105" column="36" selection-start-line="105" selection-start-column="36" selection-end-line="105" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3031#3032#0" expanded="true" />
-                <element signature="e#3067#3068#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/communication/SWPEngineImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2955">
-              <caret line="205" column="5" selection-start-line="205" selection-start-column="5" selection-end-line="205" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsoleImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="339">
-              <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/board/ShipStatus.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/board/ShipNotSetException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/ErrorMessages.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="105" selection-start-line="8" selection-start-column="105" selection-end-line="8" selection-end-column="105" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsole.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+            <state relative-caret-position="225">
+              <caret line="20" selection-start-line="20" selection-end-line="20" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/communication/SWPEngineVLImpl.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/board/ShipImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="885">
-              <caret line="69" column="13" selection-start-line="69" selection-start-column="13" selection-end-line="69" selection-end-column="13" />
+            <state relative-caret-position="210">
+              <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+              <folding>
+                <element signature="e#667#668#0" expanded="true" />
+                <element signature="e#709#710#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -208,18 +220,18 @@
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/board/RemoteBoardImpl.java" />
         <option value="$PROJECT_DIR$/src/test/java/SeaWar2/TCPChannelImplTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/board/LocalBoardImpl.java" />
-        <option value="$PROJECT_DIR$/src/test/java/SeaWar2/BoardCommandsImplTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/communication/SWPEngine.java" />
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/communication/SWPEngineImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardCommands.java" />
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/ErrorMessages.java" />
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/GameImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/Game.java" />
-        <option value="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsole.java" />
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsole.java" />
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannelImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardCommandsImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsoleImpl.java" />
+        <option value="$PROJECT_DIR$/src/test/java/SeaWar2/BoardCommandsImplTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/seaWar2/view/BoardCommandsImpl.java" />
       </list>
     </option>
   </component>
@@ -245,7 +257,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -307,10 +318,32 @@
               <item name="seaWar2" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="SeaWar2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SeaWar2" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="SeaWar2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SeaWar2" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SeaWar2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SeaWar2" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="SeaWar2" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Course" />
     </panes>
   </component>
@@ -353,7 +386,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.GameImpl (1)">
+  <component name="RunManager" selected="JUnit.BoardCommandsImplTest.setShipsAndShootThem_GoodCase02 (1)">
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
@@ -387,8 +420,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BoardCommandsImplTest.connectAndDetermineBeginner_GoodCase01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="SeaWar2" />
+    <configuration name="BoardCommandsImplTest.setShipsAndShootThem_GoodCase02 (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SeaWar2.test" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="SeaWar2.*" />
@@ -397,29 +430,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="SeaWar2" />
       <option name="MAIN_CLASS_NAME" value="SeaWar2.BoardCommandsImplTest" />
-      <option name="METHOD_NAME" value="connectAndDetermineBeginner_GoodCase01" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <method v="2">
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BoardCommandsImplTest.setShipsAndShootThem_GoodCae01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="SeaWar2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="SeaWar2.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="SeaWar2" />
-      <option name="MAIN_CLASS_NAME" value="SeaWar2.BoardCommandsImplTest" />
-      <option name="METHOD_NAME" value="setShipsAndShootThem_GoodCae01" />
+      <option name="METHOD_NAME" value="setShipsAndShootThem_GoodCase02" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -442,6 +453,28 @@
       <option name="PACKAGE_NAME" value="SeaWar2" />
       <option name="MAIN_CLASS_NAME" value="SeaWar2.BoardCommandsImplTest" />
       <option name="METHOD_NAME" value="setShipsAndShootThem_GoodCase02" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <method v="2">
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BoardViewConsoleImplTest.printBoards_GoodCase01" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="SeaWar2.test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="SeaWar2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="SeaWar2" />
+      <option name="MAIN_CLASS_NAME" value="SeaWar2.BoardViewConsoleImplTest" />
+      <option name="METHOD_NAME" value="printBoards_GoodCase01" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -500,11 +533,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.BoardCommandsImplTest.setShipsAndShootThem_GoodCase02 (1)" />
+        <item itemvalue="JUnit.BoardViewConsoleImplTest.printBoards_GoodCase01" />
         <item itemvalue="Application.GameImpl (1)" />
         <item itemvalue="JUnit.BoardCommandsImplTest.setShipsAndShootThem_GoodCase02" />
         <item itemvalue="JUnit.TCPChannelImplTest.establishConnection_GoodTest01" />
-        <item itemvalue="JUnit.BoardCommandsImplTest.connectAndDetermineBeginner_GoodCase01" />
-        <item itemvalue="JUnit.BoardCommandsImplTest.setShipsAndShootThem_GoodCae01" />
       </list>
     </recent_temporary>
   </component>
@@ -524,23 +557,13 @@
       <workItem from="1561362420493" duration="2451000" />
       <workItem from="1561368732567" duration="1373000" />
       <workItem from="1561413447356" duration="4189000" />
-      <workItem from="1561455106952" duration="664000" />
+      <workItem from="1561455106952" duration="7368000" />
+      <workItem from="1561492333644" duration="388000" />
+      <workItem from="1561534730434" duration="338000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="BoardCommandsImplTest_setShipsAndShootThem_GoodCase02 - 2019.06.22 at 12h 02m 59s.xml">
-      <configuration name="BoardCommandsImplTest.setShipsAndShootThem_GoodCase02" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BoardCommandsImplTest_setShipsAndShootThem_GoodCase02 - 2019.06.22 at 12h 06m 23s.xml">
-      <configuration name="BoardCommandsImplTest.setShipsAndShootThem_GoodCase02" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BoardCommandsImplTest_setShipsAndShootThem_GoodCase02 - 2019.06.22 at 15h 26m 03s.xml">
-      <configuration name="BoardCommandsImplTest.setShipsAndShootThem_GoodCase02" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BoardCommandsImplTest_setShipsAndShootThem_GoodCase02 - 2019.06.23 at 01h 21m 30s.xml">
-      <configuration name="BoardCommandsImplTest.setShipsAndShootThem_GoodCase02" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="BoardCommandsImplTest_setShipsAndShootThem_GoodCase02 - 2019.06.23 at 01h 23m 24s.xml">
       <configuration name="BoardCommandsImplTest.setShipsAndShootThem_GoodCase02" configurationId="JUnit" />
     </history-entry>
@@ -559,15 +582,27 @@
     <history-entry file="BoardCommandsImplTest_setShipsAndShootThem_GoodCase02 - 2019.06.23 at 01h 50m 30s.xml">
       <configuration name="BoardCommandsImplTest.setShipsAndShootThem_GoodCase02" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="BoardViewConsoleImplTest_printBoards_GoodCase01 - 2019.06.25 at 13h 56m 49s.xml">
+      <configuration name="BoardViewConsoleImplTest.printBoards_GoodCase01" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BoardCommandsImplTest_setShipsAndShootThem_GoodCase02_(1) - 2019.06.25 at 15h 01m 51s.xml">
+      <configuration name="BoardCommandsImplTest.setShipsAndShootThem_GoodCase02 (1)" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BoardCommandsImplTest_setShipsAndShootThem_GoodCase02_(1) - 2019.06.26 at 09h 40m 21s.xml">
+      <configuration name="BoardCommandsImplTest.setShipsAndShootThem_GoodCase02 (1)" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BoardCommandsImplTest_setShipsAndShootThem_GoodCase02_(1) - 2019.06.26 at 09h 40m 44s.xml">
+      <configuration name="BoardCommandsImplTest.setShipsAndShootThem_GoodCase02 (1)" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36177000" />
+    <option name="totallyTimeSpent" value="43607000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26800978" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2741148" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -577,7 +612,7 @@
       <window_info id="Learn" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32884398" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4993895" weight="0.24795918" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4993895" visible="true" weight="0.3469388" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3132653" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -652,31 +687,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/SeaWar2/LocalBoardImplTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1665">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/SeaWar2/TCPChannelImplTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/SeaWar2/BoardViewConsoleImplTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
-          <folding>
-            <element signature="e#267#268#0" expanded="true" />
-            <element signature="e#312#313#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/invoke/StringConcatFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -688,20 +698,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret line="92" column="23" selection-start-line="92" selection-start-column="23" selection-end-line="92" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/Thread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="833" selection-start-line="833" selection-end-line="833" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/board/Board.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -740,13 +736,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/board/FieldImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="35" column="22" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/board/FieldStatus.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -765,13 +754,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/board/LocalBoardImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3600">
-          <caret line="244" column="51" selection-start-line="244" selection-start-column="51" selection-end-line="244" selection-end-column="51" />
         </state>
       </provider>
     </entry>
@@ -800,17 +782,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/board/ShipImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-          <folding>
-            <element signature="e#667#668#0" expanded="true" />
-            <element signature="e#709#710#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -863,20 +834,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/communication/SWPEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/SeaWar2/BoardCommandsImplTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="195" column="39" selection-start-line="195" selection-start-column="39" selection-end-line="195" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/Game.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -891,25 +848,6 @@
           <folding>
             <element signature="e#355#356#0" expanded="true" />
             <element signature="e#386#387#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannelImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="26" column="41" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#654#655#0" expanded="true" />
-            <element signature="e#702#703#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -943,13 +881,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsole.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/ErrorMessages.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -971,10 +902,121 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/board/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/communication/SWPEngine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk-11.0.1.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/Thread.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10890">
+          <caret line="784" column="29" selection-start-line="784" selection-start-column="29" selection-end-line="784" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="15" column="22" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/board/LocalBoardImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1110">
+          <caret line="78" column="41" selection-start-line="78" selection-start-column="41" selection-end-line="78" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/board/FieldImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/communication/TCPChannelImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2190">
+          <caret line="155" column="60" selection-start-line="155" selection-start-column="60" selection-end-line="155" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#654#655#0" expanded="true" />
+            <element signature="e#702#703#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsole.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/board/ShipImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+          <folding>
+            <element signature="e#667#668#0" expanded="true" />
+            <element signature="e#709#710#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsoleImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="30" column="88" selection-start-line="30" selection-start-column="88" selection-end-line="30" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/SeaWar2/BoardViewConsoleImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="37" column="1" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
+          <folding>
+            <element signature="e#267#268#0" expanded="true" />
+            <element signature="e#312#313#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/SeaWar2/BoardCommandsImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="168" column="16" selection-start-line="168" selection-start-column="16" selection-end-line="168" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/SeaWar2/LocalBoardImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/SeaWar2/TCPChannelImplTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-157">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/view/BoardCommandsImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1113">
-          <caret line="465" column="64" selection-start-line="465" selection-start-column="64" selection-end-line="465" selection-end-column="64" />
+        <state relative-caret-position="421">
+          <caret line="436" column="44" selection-start-line="436" selection-start-column="44" selection-end-line="436" selection-end-column="44" />
           <folding>
             <element signature="e#1237#1238#0" expanded="true" />
             <element signature="e#1281#1282#0" expanded="true" />
@@ -982,13 +1024,6 @@
             <element signature="method#runPreparationMode#0;class#BoardCommandsImpl#0" />
             <element signature="method#runPlayingMode#0;class#BoardCommandsImpl#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/seaWar2/view/BoardViewConsoleImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="28" column="27" selection-start-line="28" selection-start-column="27" selection-end-line="28" selection-end-column="27" />
         </state>
       </provider>
     </entry>

@@ -129,10 +129,7 @@ public class BoardCommandsImplTest {
             ByteArrayOutputStream baosB = new ByteArrayOutputStream();
             DataOutputStream dos = new DataOutputStream(baosB);
 
-            dos.writeUTF("connect\n");
-            dos.writeUTF("testSocketB\n");
-            dos.writeUTF("n\n");
-            dos.writeUTF("8080\n");
+            dos.writeUTF("1\n");
             dos.writeUTF("set 5 a 1 h\n");
             dos.writeUTF("set 4 c 1 v\n");
             dos.writeUTF("set 4 c 3 v\n");
@@ -169,10 +166,8 @@ public class BoardCommandsImplTest {
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 DataOutputStream dos = new DataOutputStream(baos);
 
-                dos.writeUTF("connect\n");
-                dos.writeUTF("testSocketA\n");
-                dos.writeUTF("y\n");
-                dos.writeUTF("8080\n");
+                dos.writeUTF("2\n");
+                dos.writeUTF("2\n");
                 dos.writeUTF("set 5 a 1 h\n");
                 dos.writeUTF("set 4 c 1 v\n");
                 dos.writeUTF("set 4 c 3 v\n");
@@ -210,10 +205,7 @@ public class BoardCommandsImplTest {
             ByteArrayOutputStream baosB = new ByteArrayOutputStream();
             DataOutputStream dos = new DataOutputStream(baosB);
 
-            dos.writeUTF("connect\n");
-            dos.writeUTF("testSocketB\n");
-            dos.writeUTF("n\n");
-            dos.writeUTF("8080\n");
+            dos.writeUTF("1\n");
             dos.writeUTF("set 5 a 1 h\n");
             dos.writeUTF("set 4 c 1 v\n");
             dos.writeUTF("set 4 c 3 v\n");
