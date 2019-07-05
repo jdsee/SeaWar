@@ -18,6 +18,7 @@ public class SWPEngineImpl implements SWPEngine {
     private RemoteBoard remoteBoard;
     private boolean opponentIsReady;
     private BoardViewConsole view;
+    private boolean canContinue;
 
     public SWPEngineImpl(Game game) {
         this.game = game;
@@ -64,7 +65,7 @@ public class SWPEngineImpl implements SWPEngine {
     }
 
     @Override
-    public void handleConnection(InputStream in, OutputStream out, boolean determinesStart) {
+    public void handleConnection(InputStream in, OutputStream out) {
         if (this.remoteBoard == null) {
             this.remoteBoard = game.getRemoteBoard();
         }
@@ -87,9 +88,11 @@ public class SWPEngineImpl implements SWPEngine {
     @Override
     public void sendCloseConnectionCmd() throws IOException {
         this.dos.writeUTF(CLOSE_CONNECTION_CMD);
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
+        for (int i = 0; i < 10; i++) {
+            try {
+                Thread.sleep(200);
+            } catch (InterruptedException e) {
+            }
         }
         closeConnection();
     }
@@ -130,11 +133,19 @@ public class SWPEngineImpl implements SWPEngine {
     }
 
     @Override
-    public void sendShotCmd(int row, int column) throws IOException, StatusException, OutOfBoardException {
+    public synchronized void sendShotCmd(int row, int column) throws IOException, StatusException {
         this.checkStatus(GameStatus.ACTIVE);
         this.dos.writeUTF(SHOT_CMD);
         this.dos.writeInt(row);
         this.dos.writeInt(column);
+
+        canContinue = false;
+        while (!canContinue) {
+            try {
+                wait();
+            } catch (InterruptedException ex) {
+            }
+        }
     }
 
     @Override
@@ -147,35 +158,50 @@ public class SWPEngineImpl implements SWPEngine {
         switch (res) {
             case WATER:
                 this.game.setStatus(GameStatus.ACTIVE);
-                this.view.printMessage("Your opponent hit the water. It's your turn now!");
+                this.view.printMessage("\nYour opponent hit the WATER. It's your turn now!\n");
                 break;
             case HIT:
                 //status remains PASSIVE
-                this.view.printMessage("Your opponent hit one of your ships. It's still his turn!");
+                this.view.printMessage("\nYour opponent HIT one of your ships. It's still his turn!\n");
                 break;
             case SUNK:
                 //status remains PASSIVE
-                this.view.printMessage("Your opponent sunk one of your ships. It's still his turn!");
+                this.view.printMessage("\nYour opponent SUNK one of your ships. It's still his turn!\n");
                 break;
             case LOST:
                 //Calling player loses
                 this.game.setStatus(GameStatus.GAME_OVER);
-                this.view.printMessage("All of your ships are destroyed! YOU LOST!");
+                this.view.printMessage("\nAll of your ships are destroyed! YOU LOST!\n");
                 break;
         }
         view.printBoards(localBoard, remoteBoard);
         sendResultCmd(row, column, res);
     }
 
-    private void sendResultCmd(int row, int column, ShotResult res) throws IOException {
+    private void sendResultCmd(int row, int column, ShotResult res) throws IOException, OutOfBoardException {
         this.dos.writeUTF(RESULT_CMD);
         this.dos.writeInt(row);
         this.dos.writeInt(column);
         int resInt = parseShotResultToInt(res);
-        this.dos.writeInt(resInt);
+        if (res != ShotResult.SUNK) {
+            this.dos.writeInt(resInt);
+        } else {
+            try {
+                Ship sunkShip = this.localBoard.getShip(row, column);
+                this.dos.writeInt(resInt);
+                this.dos.writeInt(sunkShip.getLength());
+                for (Coordinate coordinate : sunkShip.getCoordinates()) {
+                    this.dos.writeInt(coordinate.getRow());
+                    this.dos.writeInt(coordinate.getColumn());
+                }
+            } catch (ShipNotSetException e) {
+                //Is already checked
+            }
+        }
+        this.view.printPrompt();
     }
 
-    private void handleResultCmd() throws IOException, OutOfBoardException, IllegalArgumentException {
+    private synchronized void handleResultCmd() throws IOException, OutOfBoardException, IllegalArgumentException {
         int row = this.dis.readInt();
         int column = this.dis.readInt();
 
@@ -193,8 +219,14 @@ public class SWPEngineImpl implements SWPEngine {
                 this.remoteBoard.setFieldStatus(row, column, FieldStatus.HIT);
                 break;  //status remains ACTIVE
             case SUNK:
+                int sunkShipLength = this.dis.readInt();
+                int sunkShipRow, sunkShipColumn;
+                for (int i = 0; i < sunkShipLength; i++) {
+                    sunkShipRow = this.dis.readInt();
+                    sunkShipColumn = this.dis.readInt();
+                    this.remoteBoard.setFieldStatus(sunkShipRow, sunkShipColumn, FieldStatus.SUNK_SHIP);
+                }
                 this.view.printMessage("You hit a ship and sunk it! Shoot again!");
-                this.remoteBoard.setFieldStatus(row, column, FieldStatus.HIT);
                 break;  //status remains ACTIVE
             case LOST:
                 //Calling player wins
@@ -203,6 +235,9 @@ public class SWPEngineImpl implements SWPEngine {
                 break;
         }
         view.printBoards(localBoard, remoteBoard);
+
+        canContinue = true;
+        notifyAll();
     }
 
     private void checkStatus(GameStatus required) throws StatusException {
@@ -263,10 +298,11 @@ public class SWPEngineImpl implements SWPEngine {
     @Override
     public synchronized void sendMessage(String message) throws IOException {
         this.dos.writeUTF(TALK_CMD);
-        this.dos.writeUTF(message);
+        this.dos.writeUTF("\n" + message + "\n");
+        this.view.printPrompt();
     }
 
     private void handleTalkCmd() throws IOException {
-        view.printMessage("\nYour opponent: "+this.dis.readUTF()+"\n");
+        view.printMessage("\nYour opponent: " + this.dis.readUTF() + "\n");
     }
 }

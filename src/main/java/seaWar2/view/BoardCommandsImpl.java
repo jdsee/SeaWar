@@ -41,42 +41,33 @@ public class BoardCommandsImpl implements BoardCommands {
         this.swpEngine = game.getSWPEngine();
     }
 
-    private void printPrompt() {
-        consoleOutput.print("\n-> ");
+    private void printTasks() {
+        consoleOutput.print("\n\n" +
+                "TASKS\n" +
+                "-----\n" +
+                PRINT_BOARDS_CMD + "      - prints the boards.\n" +
+                SET_SHIP_ABR_CMD + "          - places a ship on your board.         + [ship-length(1..5)][row][column][alignment(h/v)]\n" +
+                REMOVE_SHIP_ABR_CMD + "          - removes ship from your board.        + [row][column]\n" +
+                SHOOT_CMD + "      - shoots ship on your enemys board.    + [row][column]\n" +
+                START_GAME_CMD + "      - starts the game.\n" +
+                SAVE_CMD + "       - saves the game.\n" +
+                EXIT_CMD + "       - exits the application.\n" +
+                "-----\n");
     }
 
-    @Override
+    /*@Override
     public void runGame() {
-        while (!this.swpEngine.isConnected()) {
-            try {
-                doConnect();
-            } catch (IOException ioe) {
-                consoleOutput.println("* Cannot read from console: " + ioe.getMessage() + " *");
-            } catch (IllegalArgumentException iae) {
-                consoleOutput.println(ErrorMessages.ILLEGAL_ARGUMENT_ERR);
-            }
-        }
         this.printTasks();
         boolean repeat = true;
         while (repeat) {
             try {
-                this.printPrompt();
-                String cmdLineString = consoleInput.readLine();
+                String[] cmdLineString = this.readCmdLineString();
+                String commandString = cmdLineString[0];
 
-                if (cmdLineString == null) break;
-
-                cmdLineString = cmdLineString.trim();
-
-                int spaceIndex = cmdLineString.indexOf(' ');
-                spaceIndex = spaceIndex != -1 ? spaceIndex : cmdLineString.length();
-
-                String commandString = cmdLineString.substring(0, spaceIndex);
-
-                String paramString = cmdLineString.substring(spaceIndex).trim();
-                paramString = paramString.trim();
+                String paramString = cmdLineString.length > 1 ? cmdLineString[1] : null;
 
                 switch (commandString) {
-                    //only debug support
+                    //<----------------------- debug
                     case "wait":
                         try {
                             Thread.sleep(2000);
@@ -84,47 +75,54 @@ public class BoardCommandsImpl implements BoardCommands {
                             //
                         }
                         break;
-                    case PRINT_BOARDS:
+                    //--------------------------> debug
+                    case PRINT_BOARDS_CMD:
                         this.doPrintBoards();
                         break;
-                    case SHOOT:
+                    case SHOOT_CMD:
+                    case SHOOT_ABR_1_CMD:
+                    case SHOOT_ABR_2_CMD:
                         this.doShot(paramString);
                         break;
-                    case SET_SHIP:
+                    case SET_SHIP_CMD:
+                    case SET_SHIP_ABR_CMD:
                         this.doSetShip(paramString);
                         break;
-                    case REMOVE_SHIP:
+                    case REMOVE_SHIP_CMD:
+                    case REMOVE_SHIP_ABR_CMD:
                         this.doRemoveShip(paramString);
                         break;
-                    case START_GAME:
+                    case START_GAME_CMD:
                         this.doStartGame();
                         break;
-                    case GIVE_UP:
+                    case GIVE_UP_CMD:
                         this.doGiveUp();
                         break;
-                    case TALK:
+                    case TALK_CMD:
                         this.doTalk(paramString);
                         break;
-                    case GET_STATUS:
+                    case GET_STATUS_CMD:
                         this.doGetStatus();
                         break;
-                    case SAVE:
+                    case SAVE_CMD:
                         this.doSave();
                         break;
-                    case RESTORE:
+                    case RESTORE_CMD:
                         this.doRestore();
                         break;
-                    case CONNECT:
+                    case CONNECT_CMD:
                         this.doConnect();
                         break;
-                    case FILL:
+                    case FILL_CMD:
                         this.doFill();
                         this.doPrintBoards();
                         break;
                     case "q!":
-                    case EXIT:
-                        this.swpEngine.sendCloseConnectionCmd();
-                        this.game.getTCPChannel().close();
+                    case EXIT_CMD:
+                        if (this.game.getTCPChannel() != null || this.swpEngine.isConnected()) {
+                            this.swpEngine.sendCloseConnectionCmd();
+                            this.game.getTCPChannel().close();
+                        }
                         System.exit(0);
                         break;
                     default:
@@ -145,52 +143,89 @@ public class BoardCommandsImpl implements BoardCommands {
             } catch (NoSuchElementException | NumberFormatException nse) {
                 consoleOutput.println("* Parameters are missing or the syntax is wrong! *");
             } catch (IOException e) {
-                System.out.println("* Cannot read from console: " + e.getMessage() + " *");
+                consoleOutput.println("* Cannot read from console: " + e.getMessage() + " *");
+            } catch (IllegalArgumentException iae) {
+                consoleOutput.println(ErrorMessages.ILLEGAL_ARGUMENT_ERR);
             }
+        }
+    }*/
+
+    @Override
+    public void runGame() {
+        this.view.printHeader();
+
+        while (true) {
+            this.runPreparationMode();
+            this.runPlayingMode();
         }
     }
 
-    private void runConnectionMode() {
+    private String[] readCmdLineString() throws IOException, NullPointerException {
+        this.view.printPrompt();
+        String cmdLineString = consoleInput.readLine();
+        if (cmdLineString == null)
+            throw new NullPointerException();
 
+        cmdLineString = cmdLineString.trim();
+
+        String[] cmdLineStringArr = new String[2];
+
+        int spaceIndex = cmdLineString.indexOf(' ');
+        if (spaceIndex < 0) {
+            return new String[]{
+                    cmdLineString
+            };
+        } else {
+            return new String[]{
+                    cmdLineStringArr[0] = cmdLineString.substring(0, spaceIndex),
+                    cmdLineStringArr[1] = cmdLineString.substring(spaceIndex).trim()
+            };
+        }
     }
 
     private void runPreparationMode() {
-        this.printTasks();
-        boolean replay = true;
-        while (replay) {
+        boolean repeat = true;
+        while (repeat) {
             try {
-                consoleOutput.print("\n-> ");
-                String cmdLineString = consoleInput.readLine();
+                this.doPrintBoards();
+                this.view.printPreparationCommands();
 
-                if (cmdLineString == null) break;
-
-                cmdLineString = cmdLineString.trim();
-
-                int spaceIndex = cmdLineString.indexOf(' ');
-                spaceIndex = spaceIndex != -1 ? spaceIndex : cmdLineString.length();
-
-                String commandString = cmdLineString.substring(0, spaceIndex);
-
-                String paramString = cmdLineString.substring(spaceIndex).trim();
-                paramString = paramString.trim();
+                String[] cmdLineString = this.readCmdLineString();
+                String commandString = cmdLineString[0];
+                String paramString = cmdLineString.length > 1 ? cmdLineString[1] : null;
 
                 switch (commandString) {
-                    case PRINT_BOARDS:
+                    case PRINT_BOARDS_CMD:
                         this.doPrintBoards();
                         break;
-                    case SET_SHIP:
+                    case SET_SHIP_ABR_CMD:
+                    case SET_SHIP_CMD:
                         this.doSetShip(paramString);
                         break;
-                    case REMOVE_SHIP:
+                    case REMOVE_SHIP_ABR_CMD:
+                    case REMOVE_SHIP_CMD:
                         this.doRemoveShip(paramString);
                         break;
-                    case "q!":
-                    case EXIT:
-                        replay = false;
+                    case CONNECT_ABR_CMD:
+                    case CONNECT_CMD:
+                        this.doConnect();
                         break;
-
+                    case START_GAME_CMD:
+                        this.doStartGame();
+                        repeat = false;
+                        break;
+                    case GET_STATUS_CMD:
+                        this.doGetStatus();
+                        break;
+                    case EXIT_CMD:
+                        if (this.game.getTCPChannel() != null || this.swpEngine.isConnected()) {
+                            this.swpEngine.sendCloseConnectionCmd();
+                            this.game.getTCPChannel().close();
+                        }
+                        System.exit(0);
+                        break;
                     default:
-                        System.out.println("* Unknown command: " + cmdLineString + " *");
+                        System.out.println("* Unknown command: " + commandString + " *");
                         this.printTasks();
                         break;
                 }
@@ -213,60 +248,41 @@ public class BoardCommandsImpl implements BoardCommands {
     }
 
     private void runPlayingMode() {
-        this.printTasks();
-        boolean repeat = true;
-        while (repeat) {
+        while (true) {
             try {
-                consoleOutput.print("\n-> ");
-                String cmdLineString = consoleInput.readLine();
+                this.doPrintBoards();
+                this.view.printPlayCommands();
 
-                if (cmdLineString == null) break;
-
-                cmdLineString = cmdLineString.trim();
-
-                int spaceIndex = cmdLineString.indexOf(' ');
-                spaceIndex = spaceIndex != -1 ? spaceIndex : cmdLineString.length();
-
-                String commandString = cmdLineString.substring(0, spaceIndex);
-
-                String paramString = cmdLineString.substring(spaceIndex).trim();
-                paramString = paramString.trim();
+                String[] cmdLineString = this.readCmdLineString();
+                String commandString = cmdLineString[0];
+                String paramString = cmdLineString.length > 1 ? cmdLineString[1] : null;
 
                 switch (commandString) {
-                    case PRINT_BOARDS:
+                    case PRINT_BOARDS_CMD:
                         this.doPrintBoards();
                         break;
-                    case SHOOT:
+                    case SHOOT_CMD:
+                    case SHOOT_ABR_1_CMD:
+                    case SHOOT_ABR_2_CMD:
                         this.doShot(paramString);
+                        if (this.game.getStatus() == GameStatus.GAME_OVER)
+                            return;
                         break;
-                    case GIVE_UP:
+                    case GIVE_UP_CMD:
                         this.doGiveUp();
                         break;
-                    case TALK:
+                    case TALK_CMD:
                         this.doTalk(paramString);
                         break;
-                    case GET_STATUS:
+                    case GET_STATUS_CMD:
                         this.doGetStatus();
                         break;
-                    case SAVE:
-                        this.doSave();
-                        break;
-                    case RESTORE:
-                        this.doRestore();
-                        break;
-                    case CONNECT:
-                        this.doConnect();
-                        break;
-                    case FILL:
-                        this.doFill();
-                        this.doPrintBoards();
-                        break;
                     case "q!":
-                    case EXIT:
+                    case EXIT_CMD:
                         this.swpEngine.sendCloseConnectionCmd();
                         System.exit(0);
                     default:
-                        System.out.println("* Unknown command: " + cmdLineString + " *");
+                        System.out.println("* Unknown command: " + commandString + " *");
                         this.printTasks();
                         break;
                 }
@@ -307,20 +323,6 @@ public class BoardCommandsImpl implements BoardCommands {
             default:
                 throw new OutOfBoardException();
         }
-    }
-
-    private void printTasks() {
-        consoleOutput.print("\n\n" +
-                "TASKS\n" +
-                "-----\n" +
-                PRINT_BOARDS + "      - prints the boards.\n" +
-                SET_SHIP + "        - places a ship on your board.         + [ship-length(1..5)][row][column][alignment(h/v)]\n" +
-                REMOVE_SHIP + "     - removes ship from your board.        + [row][column]\n" +
-                SHOOT + "      - shoots ship on your enemys board.    + [row][column]\n" +
-                START_GAME + "      - starts the game.\n" +
-                SAVE + "       - saves the game.\n" +
-                EXIT + "       - exits the application.\n" +
-                "-----\n");
     }
 
     private void doStartGame() throws IOException, StatusException {
@@ -405,18 +407,25 @@ public class BoardCommandsImpl implements BoardCommands {
     }
 
     private void doConnect() throws IOException, IllegalArgumentException {
+        if (this.swpEngine.isConnected()) {
+            consoleOutput.println(ErrorMessages.ALREADY_CONNECTED_ERR);
+            return;
+        }
         try {
             consoleOutput.println(
                     "\nConnect to another player:\n" +
                             "[1] Open new game\n" +
                             "[2] Join existing game");
-            this.printPrompt();
+            this.view.printPrompt();
             InetAddress hostAddr;
             int port = 8080;
             boolean asServer;
             String channelName;
             TCPChannel tcpChannel;
-            String cmd = consoleInput.readLine().trim();
+            String cmd = consoleInput.readLine();
+            if (cmd != null) {
+                cmd.trim();
+            }
             switch (cmd) {
                 case OPEN_CMD_NR:
                 case OPEN_CMD:
@@ -448,24 +457,18 @@ public class BoardCommandsImpl implements BoardCommands {
             DataInputStream dis = new DataInputStream(tcpChannel.getInputStream());
             DataOutputStream dos = new DataOutputStream(tcpChannel.getOutputStream());
 
-            this.swpEngine.handleConnection(dis, dos, asServer);
-        } catch (IOException e) {
+            this.swpEngine.handleConnection(dis, dos);
+        } catch (
+                IOException e) {
             e.printStackTrace();
             throw new IOException();
         }
+
     }
 
     private String getPublicLocalHost() throws IOException {
-        /*while (true) {
-            try (final DatagramSocket socket = new DatagramSocket()) {
-                socket.connect(InetAddress.getByName("8.8.8.8"), 8080);
-                return socket.getLocalAddress().getHostAddress();
-            } catch (SocketException | UnknownHostException e) {
-                e.printStackTrace();
-            }
-        }*/
         try (final Socket socket = new Socket()) {
-            socket.connect(new InetSocketAddress("www.google.com", 80));
+            socket.connect(new InetSocketAddress("www.htw-berlin.de", 80));
             return socket.getLocalAddress().getHostAddress();
         } catch (IOException e) {
             e.printStackTrace();
@@ -473,7 +476,7 @@ public class BoardCommandsImpl implements BoardCommands {
         }
     }
 
-    private void chooseUserColor(){
+    private void chooseUserColor() {
         consoleOutput.println("\nChoose your color: " +
                 "[1] Magenta" +
                 "[2] Cyan");

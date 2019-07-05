@@ -11,6 +11,15 @@ public interface RemoteBoard extends Board {
     }
 
     /**
+     * Sets FieldStatus of field at the specified coordinates.
+     *
+     * @param column
+     * @param row
+     * @throws OutOfBoardException if the specified coordinates not existing on this board.
+     */
+    void setFieldStatus(int row, int column, FieldStatus fieldStatus) throws OutOfBoardException;
+
+    /**
      * Returns Array of all FieldStatuses on this board.
      *
      * @return FieldStatus[][] of this board.
@@ -22,7 +31,7 @@ public interface RemoteBoard extends Board {
      *
      * @param row
      * @param column
-     * @throws StatusException if GameStatus is unequal to GameStatus.ACTIVE
+     * @throws StatusException     if GameStatus is unequal to GameStatus.ACTIVE
      * @throws OutOfBoardException if the specified coordinates not existing on board.
      */
     void shoot(int row, int column) throws StatusException, OutOfBoardException, IOException;

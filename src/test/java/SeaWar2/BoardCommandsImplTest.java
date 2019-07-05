@@ -86,7 +86,6 @@ public class BoardCommandsImplTest {
         createTestGame(commandStream);
         BoardCommands boardCommands = this.getBoardCommands();
         boardCommands.runGame();
-
     }
 
     @Test
@@ -166,8 +165,10 @@ public class BoardCommandsImplTest {
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 DataOutputStream dos = new DataOutputStream(baos);
 
+                dos.writeUTF("wait\n");
+                dos.writeUTF("connect\n");
                 dos.writeUTF("2\n");
-                dos.writeUTF("2\n");
+                dos.writeUTF("141.45.207.97\n");
                 dos.writeUTF("set 5 a 1 h\n");
                 dos.writeUTF("set 4 c 1 v\n");
                 dos.writeUTF("set 4 c 3 v\n");
@@ -205,6 +206,7 @@ public class BoardCommandsImplTest {
             ByteArrayOutputStream baosB = new ByteArrayOutputStream();
             DataOutputStream dos = new DataOutputStream(baosB);
 
+            dos.writeUTF("connect\n");
             dos.writeUTF("1\n");
             dos.writeUTF("set 5 a 1 h\n");
             dos.writeUTF("set 4 c 1 v\n");

@@ -45,4 +45,7 @@ public interface Game {
     void setTCPChannel(TCPChannel tcpChannel);
 
     TCPChannel getTCPChannel();
+
+    void checkStatus(GameStatus required) throws StatusException;
+    void checkStatus(GameStatus required, GameStatus other) throws StatusException;
 }

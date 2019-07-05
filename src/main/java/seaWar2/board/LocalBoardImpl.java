@@ -12,7 +12,7 @@ public class LocalBoardImpl implements LocalBoard {
     private final Game game;
 
     private final Field[][] board = new Field[10][10]; //Board must be adressed like this: board[row][column].
-    private int pendingShips;
+    private int spareShips;
 
     private final Ship quintuple;
     private final Ship[] quadrouples;
@@ -21,10 +21,10 @@ public class LocalBoardImpl implements LocalBoard {
 
     public LocalBoardImpl(Game game) {
         this.game = game;
-        this.pendingShips = 10;
+        this.spareShips = 10;
         for (int i = 0; i <= MAX_ROW_INDEX; i++)
             for (int j = 0; j <= MAX_COLUMN_INDEX; j++)
-                this.board[i][j] = Field.createField();
+                this.board[i][j] = Field.createField(this);
 
         this.quintuple = Ship.createShip(5);
         this.quadrouples = new Ship[]{
@@ -45,19 +45,6 @@ public class LocalBoardImpl implements LocalBoard {
     }
 
     /**
-     * Sets FieldStatus of field at the specified coordinates.
-     *
-     * @param row
-     * @param column
-     * @param fieldStatus
-     * @throws OutOfBoardException if the specified coordinates not existing on this board.
-     */
-    @Override
-    public void setFieldStatus(int row, int column, FieldStatus fieldStatus) throws OutOfBoardException {
-        checkCoordinates(row, column);
-    }
-
-    /**
      * @see LocalBoard
      */
     @Override
@@ -66,17 +53,12 @@ public class LocalBoardImpl implements LocalBoard {
     }
 
     /**
-     * Gives FieldStatus of the field at the specified coordinates.
-     *
-     * @param column
-     * @param row
-     * @return FieldStatus of the field at specified coordinates.
-     * @throws OutOfBoardException if the specified coordinates not existing on this board.
+     * @see LocalBoard
      */
     @Override
-    public FieldStatus getFieldStatus(int row, int column) throws OutOfBoardException {
-        checkCoordinates(row, column);
-        return board[row][column].getFieldStatus();
+    public Field getField(int row, int column) throws OutOfBoardException {
+        this.checkCoordinates(row, column);
+        return this.board[row][column];
     }
 
     /**
@@ -116,6 +98,17 @@ public class LocalBoardImpl implements LocalBoard {
         }
         throw new ShipNotAvailableException("All ships of this type are already placed.");
     }
+
+    @Override
+    public FieldStatus getFieldStatus(int row, int column) throws OutOfBoardException {
+
+        if (column < MIN_COLUMN_INDEX || row < MIN_ROW_INDEX
+                || column > MAX_COLUMN_INDEX || row > MAX_ROW_INDEX)
+            throw new OutOfBoardException();
+
+        return board[row][column].getFieldStatus();
+    }
+
 
     /**
      * Returns the ship at the specified coordinates.
@@ -157,15 +150,7 @@ public class LocalBoardImpl implements LocalBoard {
         if (ship.isPlaced())
             throw new ShipAlreadySetException();
 
-        int first = horizontal ? row : column;
-        int next = horizontal ? column : row;
-        for (int i = first - 1; i < first + 2; i++)
-            if (i >= 0 && i < 10)
-                for (int j = next - 1; j - next < ship.getLength() + 1; j++)
-                    if (j >= 0 && j < 10
-                            && (horizontal && board[i][j].getShip() != null
-                            || !horizontal && board[j][i].getShip() != null))
-                        throw new InvalidPositionException();
+        this.checkPositionValidity(row, column, ship.getLength(), horizontal);
 
         Coordinate[] coordinates = new Coordinate[ship.getLength()];
         if (horizontal)
@@ -179,6 +164,38 @@ public class LocalBoardImpl implements LocalBoard {
                 coordinates[i - row] = Coordinate.createCoordinate(i, column);
             }
         ship.place(coordinates);
+    }
+
+    /**
+     * Checks if the position for the specified coordinates and ship length is valid.
+     * That means, that no other ships are in direct contact to the specified position.
+     * Nothing happens if the position is valid.
+     *
+     * @throws InvalidPositionException if the specified position is invalid.
+     */
+    private void checkPositionValidity(int row, int column, int shipLength, boolean horizontal)
+            throws InvalidPositionException {
+        int outerLoop = horizontal ? row : column;
+        int innerLoop = horizontal ? column : row;
+        int enlarge;
+        for (int i = outerLoop - 1; i < outerLoop + 2; i++) {
+            /*
+             * The outer loop runs three times, because all lines in touch with the ship have to be checked.
+             * To ensure that there are no ships at the tips, the enlarge variable enlarges the checked index
+             * as well at the top as at the end of the specified position just at the line the ship actually
+             * is meant to be placed.
+             */
+            enlarge = i == outerLoop ? 1 : 0;
+            if (i >= MIN_COLUMN_INDEX && i <= MAX_COLUMN_INDEX) {
+                for (int j = innerLoop - enlarge; j - innerLoop < shipLength + enlarge; j++) {
+                    if (j >= 0
+                            && j < 10
+                            && (horizontal && board[i][j].getShip() != null
+                            || !horizontal && board[j][i].getShip() != null))
+                        throw new InvalidPositionException();
+                }
+            }
+        }
     }
 
     /**
@@ -244,7 +261,11 @@ public class LocalBoardImpl implements LocalBoard {
 
         ShotResult result = board[row][column].shoot();
 
-        return pendingShips > 0 ? result : ShotResult.LOST;
+        if (result == ShotResult.SUNK){
+            this.spareShips--;
+        }
+
+        return spareShips > 0 ? result : ShotResult.LOST;
     }
 
     private void checkCoordinates(int row, int column) throws OutOfBoardException {
@@ -264,8 +285,8 @@ public class LocalBoardImpl implements LocalBoard {
      * @see LocalBoard
      */
     @Override
-    public int getPendingShips() {
-        return pendingShips;
+    public int getSpareShips() {
+        return spareShips;
     }
 
     /**
@@ -273,7 +294,7 @@ public class LocalBoardImpl implements LocalBoard {
      */
     @Override
     public boolean lost() {
-        return pendingShips == 0;
+        return spareShips == 0;
     }
 
     /**

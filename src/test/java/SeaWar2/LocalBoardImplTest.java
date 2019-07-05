@@ -365,6 +365,20 @@ public class LocalBoardImplTest {
         Assert.assertEquals(FieldStatus.WATER, board.getFieldStatus(9, 3));
     }
 
+    @Test
+    public void verticalShipPlacement_GoodCase02()
+            throws ShipNotAvailableException, InvalidPositionException, OutOfBoardException, ShipAlreadySetException,
+            StatusException {
+
+        Game game = this.createGame();
+        LocalBoard board = this.createLocalBoard(game);
+
+        Ship legalShip = board.getUnsetShip(3);
+        board.setShip(legalShip, 1, 0, true);
+        Ship illegalShip = board.getUnsetShip(5);
+        board.setShip(illegalShip, 2, 4, false);
+    }
+
     @Test(expected = OutOfBoardException.class)
     public void verticalShipPlacement_BadCase01()
             throws ShipNotAvailableException, InvalidPositionException, OutOfBoardException, ShipAlreadySetException,
@@ -403,8 +417,22 @@ public class LocalBoardImplTest {
         board.setShip(illegalShip, 2, 8, false);
     }
 
-    @Test(expected = OutOfBoardException.class)
+    @Test(expected = InvalidPositionException.class)
     public void verticalShipPlacement_BadCase04()
+            throws ShipNotAvailableException, InvalidPositionException, OutOfBoardException, ShipAlreadySetException,
+            StatusException {
+
+        Game game = this.createGame();
+        LocalBoard board = this.createLocalBoard(game);
+
+        Ship legalShip = board.getUnsetShip(3);
+        board.setShip(legalShip, 1, 0, true);
+        Ship illegalShip = board.getUnsetShip(5);
+        board.setShip(illegalShip, 1, 4, false);
+    }
+
+    @Test(expected = OutOfBoardException.class)
+    public void verticalShipPlacement_BadCase05()
             throws ShipNotAvailableException, InvalidPositionException, OutOfBoardException, ShipAlreadySetException,
             StatusException {
 

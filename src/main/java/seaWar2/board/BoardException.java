@@ -4,15 +4,15 @@ import seaWar2.SeaWarException;
 
 public class BoardException extends SeaWarException {
 
-    public BoardException() {
+    BoardException() {
         super();
     }
 
-    public BoardException(String message) {
+    BoardException(String message) {
         super();
     }
 
-    public BoardException(String message, Exception e) {
+    BoardException(String message, Exception e) {
         super();
     }
 

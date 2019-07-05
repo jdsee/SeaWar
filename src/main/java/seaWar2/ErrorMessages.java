@@ -7,4 +7,6 @@ public interface ErrorMessages {
     String NOT_YET_CONNECTED_ERR = "* You are not yet connected to your opponent! Call connect first. *";
     String WRONG_SYNTAX_ERR = "* Parameters are missing or the syntax is wrong! *";
     String ILLEGAL_ARGUMENT_ERR = "The specified arguments are invalid. Please use the required syntax.";
+    String ALREADY_CONNECTED_ERR = "You are already connected to another player. Restart game to connect again.";
 }
+

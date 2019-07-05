@@ -8,8 +8,8 @@ package seaWar2.board;
  */
 public interface Field {
 
-    static Field createField() {
-        return new FieldImpl();
+    static Field createField(LocalBoard board) {
+        return new FieldImpl(board);
     }
 
     /**
@@ -39,5 +39,7 @@ public interface Field {
      * Shoots at this field. If this field extends a ship, the ship will be fired.
      * @return ShotResult of this shot.
      */
-    ShotResult shoot();
+    ShotResult shoot() throws OutOfBoardException;
+
+    void setShipSunk();
 }

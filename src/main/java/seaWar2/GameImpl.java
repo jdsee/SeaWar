@@ -42,7 +42,7 @@ public class GameImpl implements Game {
 
     @Override
     public void startGame() {
-        try {
+        /*try {
             localBoard.setShip(localBoard.getUnsetShip(5), 0, 0, true);
             localBoard.setShip(localBoard.getUnsetShip(4), 2, 0, true);
             localBoard.setShip(localBoard.getUnsetShip(4), 2, 9, false);
@@ -61,10 +61,23 @@ public class GameImpl implements Game {
             e.printStackTrace();
         } catch (ShipNotAvailableException e) {
             e.printStackTrace();
-        }
-        view.printBoards(localBoard, remoteBoard);
+        }*/
 
         this.boardCommands.runGame();
+    }
+
+    @Override
+    public void checkStatus(GameStatus required) throws StatusException {
+        if (this.status != required) {
+            throw new StatusException();
+        }
+    }
+
+    @Override
+    public void checkStatus(GameStatus required, GameStatus other) throws StatusException {
+        if (this.status != required && this.status != other) {
+            throw new StatusException();
+        }
     }
 
     @Override

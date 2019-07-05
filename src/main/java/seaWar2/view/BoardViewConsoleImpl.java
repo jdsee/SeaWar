@@ -2,6 +2,7 @@ package seaWar2.view;
 
 import seaWar2.Game;
 import seaWar2.GameStatus;
+import seaWar2.StatusException;
 import seaWar2.board.*;
 
 import java.io.OutputStream;
@@ -17,6 +18,15 @@ public class BoardViewConsoleImpl implements BoardViewConsole {
     public BoardViewConsoleImpl(Game game, OutputStream out) {
         this.game = game;
         this.screen = new PrintStream(out);
+    }
+
+    @Override
+    public void printMessage(String message) {
+        this.screen.println(message);
+    }
+
+    public void printPrompt() {
+        screen.print("\n-> ");
     }
 
     @Override
@@ -57,7 +67,10 @@ public class BoardViewConsoleImpl implements BoardViewConsole {
                         this.screen.print(SHIP_SYMBOL);
                         break;
                     case HIT:
-                        this.screen.print(HIT_SYMBOL);
+                        this.screen.print(HIT_SHIP_SYMBOL);
+                        break;
+                    case SUNK_SHIP:
+                        this.screen.print(ANSI_LOW_INTENSITY + HIT_SHIP_SYMBOL + ANSI_RESET);
                         break;
                     case SHOT_ON_WATER:
                         this.screen.print(SHOT_ON_WATER_SYMBOL);
@@ -75,7 +88,10 @@ public class BoardViewConsoleImpl implements BoardViewConsole {
                         this.screen.print(ANSI_LOW_INTENSITY + UNKNOWN_SYMBOL + ANSI_RESET);
                         break;
                     case HIT:
-                        this.screen.print(HIT_SYMBOL);
+                        this.screen.print(HIT_SHIP_SYMBOL);
+                        break;
+                    case SUNK_SHIP:
+                        this.screen.print(ANSI_LOW_INTENSITY + HIT_SHIP_SYMBOL + ANSI_RESET);
                         break;
                     case SHOT_ON_WATER:
                         this.screen.print(SHOT_ON_WATER_SYMBOL);
@@ -112,8 +128,52 @@ public class BoardViewConsoleImpl implements BoardViewConsole {
         }
     }
 
+    private void printShipFleet() {
+
+    }
+
     @Override
-    public void printMessage(String message) {
-        this.screen.println(message);
+    public void printPreparationCommands() throws StatusException {
+        this.game.checkStatus(GameStatus.PREPARING);
+        screen.println("｜ set ship: [" + BoardCommands.SET_SHIP_ABR_CMD +
+                "] ｜ remove ship: [" + BoardCommands.REMOVE_SHIP_ABR_CMD +
+                "] ｜ connect: [" + BoardCommands.CONNECT_ABR_CMD + "]     ｜"
+        );
+        this.printSeperator('-');
+    }
+
+    @Override
+    public void printPlayCommands() throws StatusException {
+        this.game.checkStatus(GameStatus.PASSIVE, GameStatus.ACTIVE);
+        screen.println(this.game.getStatus() + " ｜ shoot ship: [" + BoardCommands.SHOOT_ABR_2_CMD +
+                "] ｜ chat: [" + BoardCommands.TALK_CMD +
+                "] ｜ give up: [" + BoardCommands.GIVE_UP_CMD + "]"
+        );
+        this.printSeperator('-');
+    }
+
+    @Override
+    public void printHeader() {
+        screen.print(" ________  _______   ________  ___       __   ________  ________    _______     \n" +
+                "|\\   ____\\|\\  ___ \\ |\\   __  \\|\\  \\     |\\  \\|\\   __  \\|\\   __  \\  /  ___  \\    \n" +
+                "\\ \\  \\___|\\ \\   __/|\\ \\  \\|\\  \\ \\  \\    \\ \\  \\ \\  \\|\\  \\ \\  \\|\\  \\/__/|_/  /|   \n" +
+                " \\ \\_____  \\ \\  \\_|/_\\ \\   __  \\ \\  \\  __\\ \\  \\ \\   __  \\ \\   _  _\\__|//  / /   \n" +
+                "  \\|____|\\  \\ \\  \\_|\\ \\ \\  \\ \\  \\ \\  \\|\\__\\_\\  \\ \\  \\ \\  \\ \\  \\\\  \\|  /  /_/__  \n" +
+                "    ____\\_\\  \\ \\_______\\ \\__\\ \\__\\ \\____________\\ \\__\\ \\__\\ \\__\\\\ _\\ |\\________\\\n" +
+                "   |\\_________\\|_______|\\|__|\\|__|\\|____________|\\|__|\\|__|\\|__|\\|__| \\|_______|\n" +
+                "   \\|_________|                                                                 \n\n");
+    }
+
+    @Override
+    public void printShipGraphik() {
+        screen.print("       __    __    __\n" +
+                "                             |==|  |==|  |==|\n" +
+                "                           __|__|__|__|__|__|_\n" +
+                "                        __|___________________|___\n" +
+                "                     __|__[]__[]__[]__[]__[]__[]__|___\n" +
+                "                    |............................o.../\n" +
+                "                    \\.............................../\n" +
+                "               hjw_,~')_,~')_,~')_,~')_,~')_,~')_,~')/,~')_\n" +
+                "\n");
     }
 }

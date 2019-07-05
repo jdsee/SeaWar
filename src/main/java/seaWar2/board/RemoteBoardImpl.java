@@ -35,20 +35,14 @@ public class RemoteBoardImpl implements RemoteBoard {
 
     @Override
     public void shoot(int row, int column) throws OutOfBoardException, IOException, StatusException {
-        this.checkStatus();
+        this.game.checkStatus(GameStatus.ACTIVE);
         this.checkCoordinates(row, column);
         this.swpEngine.sendShotCmd(row, column);
     }
 
-    void checkCoordinates(int row, int column) throws OutOfBoardException {
+    private void checkCoordinates(int row, int column) throws OutOfBoardException {
         if (column < MIN_COLUMN_INDEX || row < MIN_ROW_INDEX
                 || column > MAX_COLUMN_INDEX || row > MAX_ROW_INDEX)
             throw new OutOfBoardException();
-    }
-
-    private void checkStatus() throws StatusException {
-        if (this.game.getStatus() != GameStatus.ACTIVE) {
-            throw new StatusException();
-        }
     }
 }

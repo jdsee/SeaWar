@@ -5,8 +5,17 @@ package seaWar2.board;
  */
 public class FieldImpl implements Field {
 
-    private Ship ship = null;
-    private boolean wasShot = false;
+    private final LocalBoard board;
+    private Ship ship;
+    private boolean wasShot;
+    private boolean shipSunk;
+
+    public FieldImpl(LocalBoard board) {
+        this.board = board;
+        this.ship = null;
+        this.wasShot = false;
+        this.shipSunk = false;
+    }
 
     @Override
     public void setShip(Ship ship) {
@@ -20,10 +29,13 @@ public class FieldImpl implements Field {
 
     @Override
     public FieldStatus getFieldStatus() {
-        if (ship == null)
-            return !wasShot ? FieldStatus.WATER : FieldStatus.SHOT_ON_WATER;
-        else
-            return !wasShot ? FieldStatus.SHIP : FieldStatus.HIT;
+        if (this.shipSunk) {
+            return FieldStatus.SUNK_SHIP;
+        }
+            if (ship == null)
+                return !wasShot ? FieldStatus.WATER : FieldStatus.SHOT_ON_WATER;
+            else
+                return !wasShot ? FieldStatus.SHIP : FieldStatus.HIT;
     }
 
     @Override
@@ -33,6 +45,32 @@ public class FieldImpl implements Field {
             return ShotResult.WATER;
         }
         wasShot = true;
-        return ship.shoot();
+        ShotResult res = ship.shoot();
+        if (res == ShotResult.SUNK) {
+            try {
+                setFieldsSunk(this.ship.getCoordinates());
+            } catch (ShipNotSetException e) {
+                //Is already checked at this point
+            }
+        }
+        return res;
+    }
+
+    private void setFieldsSunk(Coordinate[] coordinates) {
+        try {
+            int row, column;
+            for (Coordinate coordinate : coordinates) {
+                row = coordinate.getRow();
+                column = coordinate.getColumn();
+                this.board.getField(row, column).setShipSunk();
+            }
+        } catch (OutOfBoardException e) {
+            //Is already checked at this point
+        }
+    }
+
+    @Override
+    public void setShipSunk() {
+        this.shipSunk = true;
     }
 }

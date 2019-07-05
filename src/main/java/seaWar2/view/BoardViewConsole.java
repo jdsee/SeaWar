@@ -1,6 +1,7 @@
 package seaWar2.view;
 
 import seaWar2.Game;
+import seaWar2.StatusException;
 import seaWar2.board.LocalBoard;
 import seaWar2.board.RemoteBoard;
 
@@ -14,7 +15,7 @@ public interface BoardViewConsole {
     char WATER_SYMBOL = '·';
     char SHIP_SYMBOL = '»';
     char SHOT_ON_WATER_SYMBOL = '∷';
-    char HIT_SYMBOL = '✖';
+    char HIT_SHIP_SYMBOL = '✖';
     char UNKNOWN_SYMBOL = '?';
 
     String ANSI_RESET = "\u001B[0m";
@@ -43,5 +44,23 @@ public interface BoardViewConsole {
      */
     void printBoards(LocalBoard local, RemoteBoard remote);
 
+    void printPreparationCommands() throws StatusException;
+
+    void printPlayCommands() throws StatusException;
+
+    /**
+     * Prints a message to this views outputstream.
+     *
+     * @param message Message to print.
+     */
     void printMessage(String message);
+
+    /**
+     * Prints a prompt to indicate that the user is allowed to enter commands.
+     */
+    void printPrompt();
+
+    void printHeader();
+
+    void printShipGraphik();
 }

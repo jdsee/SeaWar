@@ -10,21 +10,21 @@ public interface LocalBoard extends Board {
     }
 
     /**
-     * Gives FieldStatus of the field at the specified coordinates.
-     *
-     * @param column
-     * @param row
-     * @return FieldStatus of the field at specified coordinates.
-     * @throws OutOfBoardException if the specified coordinates not existing on this board.
-     */
-    FieldStatus getFieldStatus(int row, int column) throws OutOfBoardException;
-
-    /**
      * Returns Array of all fields on this board.
      *
      * @return Field[][] of this board.
      */
     Field[][] getFields();
+
+    /**
+     * Returns the field at the specified coordinates of this board.
+     *
+     * @param row
+     * @param column
+     * @return field at specified coordinates.
+     * @throws OutOfBoardException if the specified coordinates not existing on board.
+     */
+    Field getField(int row, int column) throws OutOfBoardException;
 
     /**
      * Returns ship of specified length.
@@ -36,13 +36,15 @@ public interface LocalBoard extends Board {
      */
     Ship getUnsetShip(int length) throws ShipNotAvailableException, StatusException;
 
+    FieldStatus getFieldStatus(int row, int column) throws OutOfBoardException;
+
     /**
      * Returns the ship at the specified coordinates. Null if no ship is referenced at these coordinates.
      *
      * @param row
      * @param column
      * @return the ship at the specified coordinates.
-     * @throws OutOfBoardException      if the specified coordinates not existing on board.
+     * @throws OutOfBoardException if the specified coordinates not existing on board.
      */
     Ship getShip(int row, int column) throws OutOfBoardException;
 
@@ -85,8 +87,8 @@ public interface LocalBoard extends Board {
      * @param column
      * @param row
      * @return result
-     * @throws StatusException if GameStatus is unequal to GameStatus.ACTIVE
-     * @throws OutOfBoardException      if the specified coordinates not existing on board.
+     * @throws StatusException     if GameStatus is unequal to GameStatus.ACTIVE
+     * @throws OutOfBoardException if the specified coordinates not existing on board.
      */
     ShotResult shoot(int row, int column) throws StatusException, OutOfBoardException;
 
@@ -95,7 +97,7 @@ public interface LocalBoard extends Board {
      *
      * @return the amount of not sunk ships on this board.
      */
-    int getPendingShips();
+    int getSpareShips();
 
     /**
      * Checks if game is lost.

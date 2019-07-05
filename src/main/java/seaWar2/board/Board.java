@@ -15,13 +15,4 @@ public interface Board {
 
     public static final String HORIZONTAL_STRING = "h";
     public static final String VERTICAL_STRING = "v" ;
-
-    /**
-     * Sets FieldStatus of field at the specified coordinates.
-     *
-     * @param column
-     * @param row
-     * @throws OutOfBoardException if the specified coordinates not existing on this board.
-     */
-    void setFieldStatus(int row, int column, FieldStatus fieldStatus) throws  OutOfBoardException;
 }

@@ -21,7 +21,8 @@ public class TCPChannelImpl implements TCPChannel {
     private boolean fatalError = false;
     private boolean threadRunning = false;
 
-    private final static int WAIT_LOOP_IN_MILIS = 1000;
+    private static final int WAIT_LOOP_IN_MILIS = 1000;
+    private static final String CONNECTED_USER_NOTIFICATION = "You are now connected to your opponent. Type 'start' to start game.";
 
     public TCPChannelImpl(int port, boolean asServer, String name) {
         this(null, port, asServer, name);
@@ -113,67 +114,75 @@ public class TCPChannelImpl implements TCPChannel {
             ServerSocket serverSocket = new ServerSocket(port);
 
             //<<<<<<<<<<<<<<<<<<<<<<< debug
-            StringBuilder b = new StringBuilder();
+            /*StringBuilder b = new StringBuilder();
             b.append("TCPChannel (");
             b.append(name);
             b.append("): ");
             b.append("opened port ");
             b.append(port);
             b.append(" on localhost and wait");
-            System.out.println(b.toString());
+            System.out.println(b.toString());*/
             //>>>>>>>>>>>>>>>>>>>>>>> debug
+
+            System.out.println("Wait for your opponent to join.");
 
             Socket socket = serverSocket.accept();
 
             //<<<<<<<<<<<<<<<<<<<<<<< debug
-            b = new StringBuilder();
+            /*b = new StringBuilder();
             b.append("TCPChannel (");
             b.append(name);
             b.append("): ");
             b.append("connected");
-            System.out.println(b.toString());
+            System.out.println(b.toString());*/
             //>>>>>>>>>>>>>>>>>>>>>>> debug
+
+            System.out.println(CONNECTED_USER_NOTIFICATION);
 
             return socket;
         }
     }
 
     private class TCPClient {
+
         Socket getSocket() throws IOException {
             while (true) {
                 try {
                     //<<<<<<<<<<<<<<<<<<<<<<< debug
-                    StringBuilder b = new StringBuilder();
+                    /*StringBuilder b = new StringBuilder();
                     b.append("TCPChannel (");
                     b.append(name);
                     b.append("): ");
                     b.append("try to connect localhost port ");
                     b.append(port);
-                    System.out.println(b.toString());
+                    System.out.println(b.toString());*/
                     //>>>>>>>>>>>>>>>>>>>>>>> debug
+
+                    System.out.println(CONNECTED_USER_NOTIFICATION);
 
                     Socket socket = new Socket(ipAddr, port);
                     //Socket socket = new Socket("localhost", port);
 
-                    b = new StringBuilder();
+                    /*b = new StringBuilder();
                     b.append("TCPChannel (");
                     b.append(name);
                     b.append("): ");
                     b.append("connected");
-                    System.out.println(b.toString());
+                    System.out.println(b.toString());*/
 
                     return socket;
                 } catch (IOException e) {
                     //<<<<<<<<<<<<<<<<<<<<<<< debug
-                    StringBuilder b = new StringBuilder();
+                    /*StringBuilder b = new StringBuilder();
                     b.append("TCPChannel (");
                     b.append(name);
                     b.append("): ");
                     b.append("failed / wait and re-try (");
                     b.append(port);
                     b.append(")");
-                    System.out.println(b.toString());
+                    System.out.println(b.toString());*/
                     //>>>>>>>>>>>>>>>>>>>>>>> debug
+                    System.out.print(".");
                     try {
                         Thread.sleep(WAIT_LOOP_IN_MILIS);
                     } catch (InterruptedException ex) {
