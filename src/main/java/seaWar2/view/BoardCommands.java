@@ -15,7 +15,7 @@ public interface BoardCommands {
     String SET_SHIP_ABR_CMD = "+";
     String REMOVE_SHIP_CMD = "remove";
     String REMOVE_SHIP_ABR_CMD = "-";
-    String START_GAME_CMD = "start";
+    String START_GAME_CMD = "go";
     String GIVE_UP_CMD = "LLL";
     String TALK_CMD = ":";
     String GET_STATUS_CMD = "status";

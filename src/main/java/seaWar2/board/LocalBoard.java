@@ -3,6 +3,8 @@ package seaWar2.board;
 import seaWar2.Game;
 import seaWar2.StatusException;
 
+import java.util.List;
+
 public interface LocalBoard extends Board {
 
     static LocalBoard createLocalBoard(Game game) {
@@ -98,6 +100,8 @@ public interface LocalBoard extends Board {
      * @return the amount of not sunk ships on this board.
      */
     int getSpareShips();
+
+    List<Ship[]> getShipFleet();
 
     /**
      * Checks if game is lost.

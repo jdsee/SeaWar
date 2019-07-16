@@ -4,9 +4,11 @@ import seaWar2.Game;
 import seaWar2.StatusException;
 import seaWar2.board.LocalBoard;
 import seaWar2.board.RemoteBoard;
+import seaWar2.board.Ship;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.List;
 
 /**
  * @author joschaseelig
@@ -43,6 +45,10 @@ public interface BoardViewConsole {
      * @param remote
      */
     void printBoards(LocalBoard local, RemoteBoard remote);
+
+    String[] getShipFleetString(List<Ship[]> shipFleet);
+
+    String getShipString(Ship[] ships);
 
     void printPreparationCommands() throws StatusException;
 

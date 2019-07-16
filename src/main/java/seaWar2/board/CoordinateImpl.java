@@ -6,8 +6,8 @@ public class CoordinateImpl implements Coordinate {
     private final int row;
 
     public CoordinateImpl(int row, int column) {
-        this.column = column;
         this.row = row;
+        this.column = column;
     }
 
     @Override

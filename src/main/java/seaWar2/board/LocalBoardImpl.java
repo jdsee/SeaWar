@@ -4,6 +4,9 @@ import seaWar2.Game;
 import seaWar2.GameStatus;
 import seaWar2.StatusException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author joschaseelig
  * @see LocalBoard
@@ -261,7 +264,7 @@ public class LocalBoardImpl implements LocalBoard {
 
         ShotResult result = board[row][column].shoot();
 
-        if (result == ShotResult.SUNK){
+        if (result == ShotResult.SUNK) {
             this.spareShips--;
         }
 
@@ -287,6 +290,16 @@ public class LocalBoardImpl implements LocalBoard {
     @Override
     public int getSpareShips() {
         return spareShips;
+    }
+
+    @Override
+    public List<Ship[]> getShipFleet() {
+        List<Ship[]> shipFleet = new ArrayList<>();
+        shipFleet.add(new Ship[]{this.quintuple});
+        shipFleet.add(this.quadrouples);
+        shipFleet.add(this.triples);
+        shipFleet.add(this.doubles);
+        return shipFleet;
     }
 
     /**

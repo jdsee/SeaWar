@@ -7,6 +7,7 @@ import seaWar2.board.*;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.List;
 
 /**
  * @author joschaseelig
@@ -34,7 +35,7 @@ public class BoardViewConsoleImpl implements BoardViewConsole {
         Field[][] localFields = local.getFields();
         FieldStatus[][] remoteFields = remote.getFieldStatus();
 
-        this.printSeperator('·');
+        this.printSeparator('·');
         this.screen.print("\n");
         if (this.game.getStatus() == GameStatus.ACTIVE) {
             this.screen.print(ANSI_BRIGHT_CYAN + ANSI_HIGH_INTENSITY + "            - YOU -          " + ANSI_RESET + "|");
@@ -48,13 +49,21 @@ public class BoardViewConsoleImpl implements BoardViewConsole {
         }
 
         this.screen.print("\n");
-        this.printSeperator('–');
+        this.printSeparator('–');
+        this.screen.print("\n");
+
+        String[] shipFleet = this.getShipFleetString(local.getShipFleet());
+        /*for (String ships : shipFleet) {
+            screen.println(ships);
+        }
+
+        this.printSeparator('–');
         this.screen.print("\n");
 
         this.printColumnIndices();
         this.screen.print("\n");
-        this.printSeperator('–');
-        this.screen.print("\n");
+        this.printSeparator('–');
+        this.screen.print("\n");*/
 
         for (int i = 0; i <= Board.MAX_ROW_INDEX; i++) {
             this.screen.print("| " + (char) (Board.MIN_ROW_CHAR + i) + " | ");
@@ -100,13 +109,16 @@ public class BoardViewConsoleImpl implements BoardViewConsole {
                 this.screen.print(" ");
             }
             this.screen.print("| " + (char) (Board.MIN_ROW_CHAR + i) + " |");
+            if (i >= 6) {
+                screen.print(" " + shipFleet[i-6]);
+            }
             this.screen.print("\n");
         }
-        this.printSeperator('–');
+        this.printSeparator('–');
         this.screen.print("\n");
         this.printColumnIndices();
         this.screen.print("\n");
-        this.printSeperator('–');
+        this.printSeparator('–');
         this.screen.print("\n");
     }
 
@@ -121,35 +133,56 @@ public class BoardViewConsoleImpl implements BoardViewConsole {
         this.screen.print("\b|   |");
     }
 
-    private void printSeperator(char symbol) {
+    private void printSeparator(char symbol) {
         int length = 57;
         for (int i = 0; i <= length; i++) {
             this.screen.print(symbol);
         }
     }
 
-    private void printShipFleet() {
+    @Override
+    public String[] getShipFleetString(List<Ship[]> shipFleet) {
+        String[] shipFleetStrings = new String[4];
+        int i = 0;
+        for (Ship[] ships : shipFleet) {
+            shipFleetStrings[i++] = this.getShipString(ships);
+        }
+        return shipFleetStrings;
+    }
 
+    @Override
+    public String getShipString(Ship[] ships) {
+        StringBuilder shipString = new StringBuilder();
+        for (Ship ship : ships) {
+            String intensity = ship.isPlaced() ? ANSI_GREEN + ANSI_LOW_INTENSITY : ANSI_WHITE;
+            shipString.append((intensity + SHIP_SYMBOL).repeat(ship.getLength()));
+            shipString.append(ANSI_RESET);
+            shipString.append(" ".repeat(6 - ship.getLength()));
+            shipString.append("| ");
+        }
+        return shipString.toString();
     }
 
     @Override
     public void printPreparationCommands() throws StatusException {
         this.game.checkStatus(GameStatus.PREPARING);
-        screen.println("｜ set ship: [" + BoardCommands.SET_SHIP_ABR_CMD +
-                "] ｜ remove ship: [" + BoardCommands.REMOVE_SHIP_ABR_CMD +
-                "] ｜ connect: [" + BoardCommands.CONNECT_ABR_CMD + "]     ｜"
+        screen.println("｜set: [" + BoardCommands.SET_SHIP_ABR_CMD +
+                "] ｜ remove: [" + BoardCommands.REMOVE_SHIP_ABR_CMD +
+                "] ｜ connect: [" + BoardCommands.CONNECT_ABR_CMD +
+                "] ｜ start: [" + BoardCommands.START_GAME_CMD + "] ｜"
         );
-        this.printSeperator('-');
+        this.printSeparator('-');
     }
 
     @Override
     public void printPlayCommands() throws StatusException {
         this.game.checkStatus(GameStatus.PASSIVE, GameStatus.ACTIVE);
-        screen.println(this.game.getStatus() + " ｜ shoot ship: [" + BoardCommands.SHOOT_ABR_2_CMD +
+        GameStatus status = this.game.getStatus();
+        screen.print(status + " ｜ shoot ship: [" + BoardCommands.SHOOT_ABR_2_CMD +
                 "] ｜ chat: [" + BoardCommands.TALK_CMD +
-                "] ｜ give up: [" + BoardCommands.GIVE_UP_CMD + "]"
-        );
-        this.printSeperator('-');
+                "] ｜ give up: [" + BoardCommands.GIVE_UP_CMD + "]");
+        screen.print(status == GameStatus.ACTIVE ? "  ｜\n" : " ｜\n");
+        this.printSeparator('-');
     }
 
     @Override

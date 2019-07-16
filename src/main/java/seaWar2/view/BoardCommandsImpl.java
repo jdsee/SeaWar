@@ -16,7 +16,7 @@ import java.util.StringTokenizer;
 public class BoardCommandsImpl implements BoardCommands {
 
     private final Game game;
-    private final PrintStream consoleOutput;
+    private final PrintStream screen;
     private final BufferedReader consoleInput;
     private final BoardViewConsole view;
     private final RemoteBoard remoteBoard;
@@ -30,7 +30,7 @@ public class BoardCommandsImpl implements BoardCommands {
     BoardCommandsImpl(Game game, InputStream in, OutputStream out) {
         this.game = game;
 
-        this.consoleOutput = new PrintStream(out);
+        this.screen = new PrintStream(out);
         this.consoleInput = new BufferedReader(new InputStreamReader(in));
 
         this.view = game.getBoardViewConsole();
@@ -42,7 +42,7 @@ public class BoardCommandsImpl implements BoardCommands {
     }
 
     private void printTasks() {
-        consoleOutput.print("\n\n" +
+        screen.print("\n\n" +
                 "TASKS\n" +
                 "-----\n" +
                 PRINT_BOARDS_CMD + "      - prints the boards.\n" +
@@ -131,21 +131,21 @@ public class BoardCommandsImpl implements BoardCommands {
                         break;
                 }
             } catch (OutOfBoardException oe) {
-                consoleOutput.println("* The specified coordinates are out of the board! *");
+                screen.println("* The specified coordinates are out of the board! *");
             } catch (InvalidPositionException ip) {
-                consoleOutput.println("* The specified coordinates are not valid! *");
+                screen.println("* The specified coordinates are not valid! *");
             } catch (ShipNotAvailableException sna) {
-                consoleOutput.println("* There is no ship left with the specified length! *");
+                screen.println("* There is no ship left with the specified length! *");
             } catch (BoardException be) {
-                consoleOutput.println("* Failure on board operation: " + be.getMessage() + " *");
+                screen.println("* Failure on board operation: " + be.getMessage() + " *");
             } catch (StatusException se) {
-                consoleOutput.println("* Status Error: " + se.getMessage() + " *");
+                screen.println("* Status Error: " + se.getMessage() + " *");
             } catch (NoSuchElementException | NumberFormatException nse) {
-                consoleOutput.println("* Parameters are missing or the syntax is wrong! *");
+                screen.println("* Parameters are missing or the syntax is wrong! *");
             } catch (IOException e) {
-                consoleOutput.println("* Cannot read from console: " + e.getMessage() + " *");
+                screen.println("* Cannot read from console: " + e.getMessage() + " *");
             } catch (IllegalArgumentException iae) {
-                consoleOutput.println(ErrorMessages.ILLEGAL_ARGUMENT_ERR);
+                screen.println(ErrorMessages.ILLEGAL_ARGUMENT_ERR);
             }
         }
     }*/
@@ -212,7 +212,7 @@ public class BoardCommandsImpl implements BoardCommands {
                         break;
                     case START_GAME_CMD:
                         this.doStartGame();
-                        repeat = false;
+                        repeat = this.game.getStatus() == GameStatus.PREPARING;
                         break;
                     case GET_STATUS_CMD:
                         this.doGetStatus();
@@ -230,17 +230,17 @@ public class BoardCommandsImpl implements BoardCommands {
                         break;
                 }
             } catch (OutOfBoardException oe) {
-                consoleOutput.println("* The specified coordinates are out of the board! *");
+                screen.println("* The specified coordinates are out of the board! *");
             } catch (InvalidPositionException ip) {
-                consoleOutput.println("* The specified coordinates are not valid! *");
+                screen.println("* The specified coordinates are not valid! *");
             } catch (ShipNotAvailableException sna) {
-                consoleOutput.println("* There is no ship left with the specified length! *");
+                screen.println("* There is no ship left with the specified length! *");
             } catch (BoardException be) {
                 System.out.println("* Failure on board operation: " + be.getMessage() + " *");
             } catch (StatusException se) {
                 System.out.println("* Status Error: " + se.getMessage() + " *");
-            } catch (NoSuchElementException | NumberFormatException nse) {
-                consoleOutput.println("* Parameters are missing or the syntax is wrong! *");
+            } catch (NoSuchElementException | NumberFormatException | NullPointerException nse) {
+                screen.println("* Parameters are missing or the syntax is wrong! *");
             } catch (IOException e) {
                 System.out.println("* Cannot read from console: " + e.getMessage() + " *");
             }
@@ -287,11 +287,11 @@ public class BoardCommandsImpl implements BoardCommands {
                         break;
                 }
             } catch (OutOfBoardException oe) {
-                consoleOutput.println(ErrorMessages.OUT_OF_BOARD_ERR);
+                screen.println(ErrorMessages.OUT_OF_BOARD_ERR);
             } catch (StatusException se) {
                 System.out.println("* Status Error: " + se.getMessage() + " *");
             } catch (NoSuchElementException | NumberFormatException nse) {
-                consoleOutput.println(ErrorMessages.WRONG_SYNTAX_ERR);
+                screen.println(ErrorMessages.WRONG_SYNTAX_ERR);
             } catch (IOException e) {
                 System.out.println("* Cannot read from console: " + e.getMessage() + " *");
             }
@@ -332,7 +332,7 @@ public class BoardCommandsImpl implements BoardCommands {
             this.game.setStatus(GameStatus.READY);
             this.swpEngine.sendReadyCmd();
         } else {
-            consoleOutput.println(ErrorMessages.NOT_YET_READY_ERROR);
+            screen.println(ErrorMessages.NOT_YET_READY_ERROR);
         }
     }
 
@@ -352,19 +352,29 @@ public class BoardCommandsImpl implements BoardCommands {
 
     private void doSetShip(String paramString)
             throws IllegalArgumentException, InvalidPositionException, StatusException, ShipNotAvailableException,
-            ShipAlreadySetException {
+            ShipAlreadySetException, IOException {
+        int shipLength, row, column;
+        Ship ship;
+        String alignmentString;
 
-        StringTokenizer st = new StringTokenizer(paramString, " ", false);
+        if (paramString != null) {
+            StringTokenizer st = new StringTokenizer(paramString, " ", false);
+            shipLength = Integer.parseInt(st.nextToken());
+            ship = localBoard.getUnsetShip(shipLength);
 
-        int shipLength = Integer.parseInt(st.nextToken());
-        Ship ship = localBoard.getUnsetShip(shipLength);
+            row = this.parseRowCharToInt(st.nextToken().toUpperCase().charAt(0));
+            column = Integer.parseInt(st.nextToken()) - 1;
 
-        int row = this.parseRowCharToInt(st.nextToken().toUpperCase().charAt(0));
-        int column = Integer.parseInt(st.nextToken()) - 1;
+            alignmentString = st.nextToken().toLowerCase();
+        } else {
+            shipLength = this.readShipLengthParam();
+            ship = localBoard.getUnsetShip(shipLength);
 
-        String alignmentString = st.nextToken().toLowerCase();
+            row = this.readRow();
+            column = this.readColumn();
 
-
+            alignmentString = readAlignmentParam();
+        }
         boolean horizontal;
         if (alignmentString.equals(Board.HORIZONTAL_STRING)) {
             horizontal = true;
@@ -374,6 +384,28 @@ public class BoardCommandsImpl implements BoardCommands {
 
         localBoard.setShip(ship, row, column, horizontal);
         this.doPrintBoards();
+    }
+
+    private int readShipLengthParam() throws IOException, NumberFormatException {
+        this.screen.print("Specify the ship length: ");
+        String shipLength = this.consoleInput.readLine();
+        return Integer.parseInt(shipLength.trim());
+    }
+
+    private int readRow() throws IOException, NumberFormatException, OutOfBoardException {
+        this.screen.print("Specify the row: ");
+        String rowString = this.consoleInput.readLine();
+        return this.parseRowCharToInt(rowString.toUpperCase().toCharArray()[0]);
+    }
+
+    private int readColumn() throws IOException {
+        this.screen.print("Specify the column: ");
+        String columnString = this.consoleInput.readLine();
+        return Integer.parseInt(columnString.trim());    }
+
+    private String readAlignmentParam() throws IOException {
+        this.screen.print("Specify the alignment ([v]-vertical, [h]-horizontal): ");
+        return this.consoleInput.readLine();
     }
 
     private void doRemoveShip(String paramString) throws NumberFormatException, OutOfBoardException, StatusException {
@@ -387,7 +419,7 @@ public class BoardCommandsImpl implements BoardCommands {
     }
 
     private void doGiveUp() throws IOException {
-        //swpEngine.writeGiveUpPDU();
+        //TODO
     }
 
     private void doTalk(String message) throws IOException {
@@ -395,7 +427,7 @@ public class BoardCommandsImpl implements BoardCommands {
     }
 
     private void doGetStatus() {
-        consoleOutput.println("Your actual status: " + game.getStatus().toString());
+        screen.println("Your actual status: " + game.getStatus().toString());
     }
 
     private void doSave() {
@@ -408,11 +440,11 @@ public class BoardCommandsImpl implements BoardCommands {
 
     private void doConnect() throws IOException, IllegalArgumentException {
         if (this.swpEngine.isConnected()) {
-            consoleOutput.println(ErrorMessages.ALREADY_CONNECTED_ERR);
+            screen.println(ErrorMessages.ALREADY_CONNECTED_ERR);
             return;
         }
         try {
-            consoleOutput.println(
+            screen.println(
                     "\nConnect to another player:\n" +
                             "[1] Open new game\n" +
                             "[2] Join existing game");
@@ -431,7 +463,7 @@ public class BoardCommandsImpl implements BoardCommands {
                 case OPEN_CMD:
                     channelName = CHANNEL_NAME_SERVER;
                     asServer = true;
-                    consoleOutput.println("\nInvite someone to play!" +
+                    screen.println("\nInvite someone to play!" +
                             "\nYour IP-Address: " + this.getPublicLocalHost());
                     tcpChannel = TCPChannel.createTCPChannel(port, asServer, channelName);
                     break;
@@ -439,7 +471,7 @@ public class BoardCommandsImpl implements BoardCommands {
                 case JOIN_CMD:
                     channelName = CHANNEL_NAME_CLIENT;
                     asServer = false;
-                    consoleOutput.print("Please specify the ip address of your opponent: ");
+                    screen.print("Please specify the ip address of your opponent: ");
                     String hostName = consoleInput.readLine();
                     hostAddr = InetAddress.getByName(hostName);
                     tcpChannel = TCPChannel.createTCPChannel(hostAddr, port, asServer, channelName);
@@ -477,7 +509,7 @@ public class BoardCommandsImpl implements BoardCommands {
     }
 
     private void chooseUserColor() {
-        consoleOutput.println("\nChoose your color: " +
+        screen.println("\nChoose your color: " +
                 "[1] Magenta" +
                 "[2] Cyan");
         //TODO
